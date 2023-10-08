@@ -37,6 +37,8 @@ export default {
 }
 
 body {
+  overflow-x: hidden;
   margin: 0;
+  background-color: $terciary-white;
 }
 </style>

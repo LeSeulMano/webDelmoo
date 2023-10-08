@@ -1,14 +1,19 @@
 <template>
-  <header>
+  <header :class="{ 'header-shrink': isMenuOpen }">
     <router-view/>
     <div class="header-container">
-      <router-link class="onSelected" to="/">Accueil</router-link>
-      <router-link class="onPage" to="/">Cours</router-link>
-      <router-link class="nav-logo" to="/">
+      <router-link :class="{ 'onSelected': isMenuOpen }" class="router-link onSelected" to="/">Accueil</router-link>
+      <router-link class="router-link onPage" to="/">Cours</router-link>
+      <router-link :class="{ 'onSelected': isMenuOpen }" class="router-link nav-logo" to="/">
         <img src="../../assets/Logo_DELMOO.png" alt="Logo de l'association Delmoo">
       </router-link>
-      <router-link class="onPage" to="/">Podcast</router-link>
-      <router-link class="onPage" to="/">Shop</router-link>
+      <router-link class="router-link onPage" to="/">Podcast</router-link>
+      <router-link class="router-link onPage" to="/">Shop</router-link>
+    </div>
+    <div class="burger-menu" id="menu-opener" @click="changeMenu">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </header>
 </template>
@@ -16,6 +21,10 @@
 <script>
 export default {
   name: 'HeaderComp',
+  props: {
+    isMenuOpen: Boolean,
+    changeMenu: Function
+  }
 }
 </script>
 
@@ -58,7 +67,6 @@ header {
 
     .onPage, .onSelected {
 
-      text-decoration: none;
       list-style: none;
       margin-right: 2.5rem;
       font-weight: 600;
@@ -100,6 +108,10 @@ header {
 
 
     }
+  }
+
+  .burger-menu {
+    display: none;
   }
 
 

@@ -169,3 +169,36 @@ $h1-text: 6rem;
     cursor: pointer;
   }
 }
+
+.router-link {
+
+  text-decoration: none;
+
+}
+
+section:last-of-type {
+  padding-bottom: 17.5rem;
+
+}
+
+section {
+  min-height: 60vh;
+}
+
+// Class interactive pour JS
+.header-shrink {
+  height: 5rem!important;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px!important;
+}
+.header-logo-shrink {
+  width: 6.5rem!important;
+}
+.header-logo-shrink img{
+  top: -2.5rem!important;
+  height: 6rem!important;
+  width: 6rem!important;
+}
+.header-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
