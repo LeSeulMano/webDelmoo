@@ -39,6 +39,10 @@ $h3-text: 3rem;
 $h2-text: 4rem;
 $h1-text: 6rem;
 
+section > div {
+  max-width: 1600px;
+}
+
 
 .btn {
   position: relative;
@@ -60,7 +64,7 @@ $h1-text: 6rem;
     &::before {
       position: absolute;
       display: block;
-      content:'';
+      content: '';
       z-index: -1;
       transform: skew(-12deg);
       height: 100%;
@@ -88,12 +92,14 @@ $h1-text: 6rem;
       > div {
         margin-right: .47rem;
       }
+
       ion-icon {
         color: $primary-white;
         font-size: $h5-text;
       }
     }
   }
+
   &.btn-icon-backward {
     > div, > a {
       display: flex;
@@ -104,12 +110,14 @@ $h1-text: 6rem;
       > div {
         margin-left: .47rem;
       }
+
       ion-icon {
         color: $primary-white;
         font-size: $h5-text;
       }
     }
   }
+
   &.btn-icon {
 
     > a, > div {
@@ -117,6 +125,7 @@ $h1-text: 6rem;
       align-self: center;
       padding: 1.2rem;
     }
+
     ion-icon {
       color: $primary-white;
       font-size: $h5-text;
@@ -126,15 +135,19 @@ $h1-text: 6rem;
   &.btn-primary div::before, &.btn-primary a::before {
     background-color: $primary-red;
   }
+
   &.btn-secondary div::before, &.btn-secondary a::before {
     background-color: $secondary-red;
   }
+
   &.btn-shop div::before, &.btn-shop a::before {
     background-color: $shop-color;
   }
+
   &.btn-podcast div::before, &.btn-podcast a::before {
     background-color: $podcast-color;
   }
+
   &.btn-cours div::before, &.btn-cours a::before {
     background-color: $cours-color;
   }
@@ -142,7 +155,7 @@ $h1-text: 6rem;
   &::after {
     position: absolute;
     display: block;
-    content:'';
+    content: '';
     z-index: -1;
     transform: skew(-12deg);
     height: 100%;
@@ -154,9 +167,10 @@ $h1-text: 6rem;
     // Effet d'ombre
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
+
   // Animation sur le :hover
   &:hover::after {
-    transform: skew(-12deg)translate(-.4rem, .4rem);
+    transform: skew(-12deg) translate(-.4rem, .4rem);
   }
 
   &.btn-no-hover {
@@ -176,7 +190,7 @@ $h1-text: 6rem;
 
 }
 
-section:last-of-type {
+.sect3 {
   padding-bottom: 17.5rem;
 
 }
@@ -187,18 +201,171 @@ section {
 
 // Class interactive pour JS
 .header-shrink {
-  height: 5rem!important;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px!important;
+  height: 5rem !important;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
 }
+
 .header-logo-shrink {
-  width: 6.5rem!important;
+  width: 6.5rem !important;
 }
-.header-logo-shrink img{
-  top: -2.5rem!important;
-  height: 6rem!important;
-  width: 6rem!important;
+
+.header-logo-shrink img {
+  top: -2.5rem !important;
+  height: 6rem !important;
+  width: 6rem !important;
 }
+
 .header-hidden {
   opacity: 0;
   visibility: hidden;
+}
+
+@media only screen and (max-width: 1024px) {
+
+  // Couleurs
+  $primary-white: rgb(245, 245, 245);
+  $secondary-white: rgb(230, 230, 230);
+  $terciary-white: rgb(249, 243, 241); // Offi
+
+  // $primary-black: rgb(15, 15, 15); // Offi
+  // $secondary-black: #232323; // Offi
+  $primary-black: rgb(75, 75, 75);
+  $secondary-black: rgb(100, 100, 100);
+  $terciary-black: rgb(125, 125, 125);
+
+  $primary-blue: #002233;
+  $secondary-blue: #0066FF;
+  $terciary-blue: #B6CDE8;
+
+  $primary-red: #E42618; // Offi
+  $secondary-red: #F1948A; // Offi
+  $terciary-red: #F1948A; // Offi
+
+  $cours-color: #8ea1b5;
+  $shop-color: #c6538c;
+  $podcast-color: #93b893;
+
+  // Border-radius
+  $round: 50rem;
+  $half-round: 16px;
+
+  // Police d'écriture
+  $primary-font: 'Poppins', sans-serif;
+
+  // Taille d'écriture
+  $small-text: 1.25rem;
+  $p-text: 0.8rem;
+  $big-text: 1.2rem;
+  $h6-text: 1.7rem;
+  $h5-text: 2.4rem;
+  $h4-text: 2rem;
+  $h3-text: 3.8rem;
+  $h2-text: 4.9rem;
+  $h1-text: 6.4rem;
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: $terciary-white;
+
+    // Barre de scroll
+    scrollbar-color: $primary-red $secondary-black;
+
+    ::-webkit-scrollbar {
+      width: 8px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: $secondary-black;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: $primary-red;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+      background-color: $secondary-red;
+    }
+  }
+
+  * {
+    font-family: $primary-font;
+    color: $primary-black;
+    font-size: $p-text;
+  }
+
+  section:last-of-type {
+    &::before {
+      background-size: 200%;
+      background-position-x: 30%;
+    }
+  }
+
+  .btn {
+    position: relative;
+    display: inline-block;
+    color: $primary-white;
+    font-weight: 600;
+
+    > a, > div {
+      padding: 0.9rem 1.5rem;
+
+      > div {
+        font-size: 1rem;
+      }
+    }
+
+    &.btn-icon-forward {
+      div {
+        display: flex;
+        align-items: center;
+        color: $primary-white;
+
+        div {
+          margin-right: .47rem;
+        }
+
+        ion-icon {
+          color: $primary-white;
+          font-size: $h5-text;
+        }
+      }
+    }
+
+    &.btn-icon-backward {
+      div {
+        display: flex;
+        align-items: center;
+        color: $primary-white;
+
+        div {
+          margin-left: .47rem;
+        }
+
+        ion-icon {
+          color: $primary-white;
+          font-size: $h5-text;
+        }
+      }
+    }
+
+    &.pointer {
+      cursor: pointer;
+    }
+  }
+
+  .header-shrink {
+    height: 4.6rem !important;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+  }
+  .header-logo-shrink {
+    width: 6.5rem !important;
+  }
+  .header-logo-shrink img {
+    top: -3.3rem !important;
+    height: 5.7rem !important;
+    width: 5.7rem !important;
+  }
 }
