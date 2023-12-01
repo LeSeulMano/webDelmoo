@@ -10,15 +10,19 @@
     </div>
     <h4>{{ matter }}</h4>
     <div class="file-cta">
-      <div class="btn btn-primary btn-icon-forward pointer">
-        <div>
-          <div>Voir</div>
-          <IonIcon name="eye"></IonIcon>
+      <a :href="getFile(path)" target="_blank">
+        <div class="btn btn-primary btn-icon-forward pointer">
+          <div>
+            <div>Voir</div>
+            <IonIcon name="eye"></IonIcon>
+          </div>
         </div>
-      </div>
-      <div class="btn btn-cours btn-icon pointer">
+      </a>
+      <div class="btn btn-cours btn-icon pointer" @click="downloadFile(path)">
         <div>
-          <div><IonIcon name="cloud-download"></IonIcon></div>
+          <div>
+            <IonIcon name="cloud-download"></IonIcon>
+          </div>
         </div>
       </div>
     </div>
@@ -26,17 +30,40 @@
 </template>
 
 <script>
-import { IonIcon } from '@ionic/vue';
+import {IonIcon} from '@ionic/vue';
+import axios from "axios";
+
 export default ({
   components: {
     IonIcon,
+  },
+  methods: {
+    getFile(path) {
+      return `http://localhost:5000/cours/open?file=${path}`;
+    },
+    downloadFile(coursPath) {
+      axios.post('http://localhost:5000/cours/download', {
+        filePath: coursPath
+      })
+          .then((response) => {
+            window.open(response.request.responseURL, '_blank');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+    }
+  },
+  mounted() {
+    console.log(this.path)
   },
   props: {
     type: String,
     matter: String,
     name: String,
-    date: String
-  }
+    date: String,
+    path: String
+  },
+
 
 })
 </script>

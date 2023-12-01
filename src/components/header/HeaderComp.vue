@@ -21,6 +21,11 @@
           <router-link class="router-link " :class="selected == 4 ? 'onPage' : ''" to="/">Shop</router-link>
         </li>
       </ul>
+      <div class="account">
+        <router-link to="/login" class="router-link"><IonIcon name="person" class="account-icon selected"></IonIcon></router-link>
+        <IonIcon name="log-out" class="account-icon"></IonIcon>
+        <IonIcon name="document" class="account-icon"></IonIcon>
+      </div>
       <div class="burger-menu" id="menu-opener" @click="menuOpener">
         <div></div>
         <div></div>
@@ -32,8 +37,12 @@
 </template>
 
 <script>
-export default {
+import { IonIcon } from "@ionic/vue";
 
+export default {
+  components: {
+    IonIcon
+  },
   data() {
     const screenHeight = window.innerHeight;
     var headerShrinked = false;
@@ -150,7 +159,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../utils/computer/variables';
+@import '../../utils/computer/components';
+
 
 header {
   position: fixed;
@@ -233,6 +243,22 @@ header {
           width: 50%;
         }
 
+      }
+    }
+
+    .account {
+      position: relative;
+      left: 60rem;
+      top: -2rem;
+      .account-icon{
+        margin-right: .5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        color: black;
+
+        &:not(.selected){
+          display: none;
+        }
       }
     }
 
@@ -354,6 +380,22 @@ header {
         li:not(.nav-logo) {
           visibility: hidden;
           opacity: 0;
+        }
+      }
+
+      .account {
+        position: relative;
+        left: 23rem;
+        top: 1rem;
+        .account-icon{
+          margin-right: .5rem;
+          font-size: 1rem;
+          cursor: pointer;
+          color: black;
+
+          &:not(.selected){
+            display: none;
+          }
         }
       }
 

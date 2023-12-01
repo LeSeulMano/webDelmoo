@@ -1,5 +1,4 @@
 <template>
-
   <section class="sect1" id="sect1">
     <div class="news">
       <div class="article" data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">

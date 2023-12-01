@@ -1,5 +1,4 @@
 <template>
-
   <section class="sect1-cours" id="sect1">
     <div class="courses">
       <div class="search-courses">
@@ -10,15 +9,23 @@
           </router-link>
         </div>
       </div>
-      <div class="all-courses">
-        <div class="btn btn-cours pointer" data-aos="fade-up" data-aos-delay="500" data-aos-duration="500">
-          <router-link class="router-link" :to="{ name: 'Result', query: {search: '1'}}">1A</router-link>
+      <div class="courses-shortcut">
+        <div class="all-courses">
+          <div class="btn btn-cours pointer" data-aos="fade-up" data-aos-delay="500" data-aos-duration="500">
+            <router-link class="router-link" :to="{ name: 'Result', query: {search: '1'}}">1A</router-link>
+          </div>
+          <div class="btn btn-cours pointer" data-aos="fade-up" data-aos-delay="650" data-aos-duration="500">
+            <router-link class="router-link" :to="{ name: 'Result', query: {search: '2'}}">2A</router-link>
+          </div>
+          <div class="btn btn-cours pointer" data-aos="fade-up" data-aos-delay="800" data-aos-duration="500">
+            <router-link class="router-link" :to="{ name: 'Result', query: {result: '3'}}">3A</router-link>
+          </div>
         </div>
-        <div class="btn btn-cours pointer" data-aos="fade-up" data-aos-delay="650" data-aos-duration="500">
-          <router-link class="router-link" :to="{ name: 'Result', query: {search: '2'}}">2A</router-link>
-        </div>
-        <div class="btn btn-cours pointer" data-aos="fade-up" data-aos-delay="800" data-aos-duration="500">
-          <router-link class="router-link" :to="{ name: 'Result', query: {result: '3'}}">3A</router-link>
+        <div class="btn btn-primary btn-icon-forward adding-course" data-aos="fade-up" data-aos-delay="950" data-aos-duration="500">
+          <router-link class="router-link" to="/add">
+            <div>Ajouter un cours</div>
+            <IonIcon name="add-circle"></IonIcon>
+          </router-link>
         </div>
       </div>
     </div>
@@ -147,19 +154,29 @@ export default ({
 
     }
 
-    .all-courses {
-      position: relative;
-      width: 30%;
-      display: flex;
-      justify-content: center;
 
-      .btn-cours {
-        display: block;
+    .courses-shortcut {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      > div {
         margin-bottom: 2rem;
+      }
+
+      .all-courses {
+        position: relative;
+        display: flex;
+        justify-content: center;
         margin-right: 1.5rem;
 
-        &:after {
-          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        .btn-cours {
+          display: block;
+          margin-right: 1.5rem;
+
+          &:after {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          }
         }
       }
     }
@@ -248,27 +265,43 @@ export default ({
 
       }
 
-      .all-courses {
-        position: relative;
-        width: 30%;
+      .courses-shortcut {
         display: flex;
-        justify-content: center;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
 
-        .btn-cours {
-          display: block;
+        > div {
           margin-bottom: 2rem;
-          margin-right: 1.5rem;
+        }
 
-          &:after {
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-          }
+        .adding-course{
+          display: none;
+        }
 
-          .router-link {
-            font-size: 1.2rem;
-            padding: 0.8rem 1.2rem;
+        .all-courses {
+          position: relative;
+          width: 30%;
+          display: flex;
+          justify-content: center;
+
+          .btn-cours {
+            display: block;
+            margin-bottom: 2rem;
+
+            &:after {
+              box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            }
+
+            .router-link {
+              font-size: 1.2rem;
+              padding: 0.8rem 1.2rem;
+            }
           }
         }
       }
+
+
     }
   }
 }
