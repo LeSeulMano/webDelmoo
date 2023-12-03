@@ -30,8 +30,35 @@
               <select name="matiere" v-if="promotion == '2A'" v-model="matter">
                 <option v-for="(matter, index) in second" :key="index" :value="matter">{{ matter }}</option>
               </select>
-              <select name="matiere" v-if="promotion == '3A'" v-model="matter">
-                <option v-for="(matter, index) in third" :key="index" :value="matter">{{ matter }}</option>
+              <select name="matiere" v-if="specialities == 'MT'" v-model="matter">
+                <option v-for="(matter, index) in mt" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'ME'" v-model="matter">
+                <option v-for="(matter, index) in me" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'AVM'" v-model="matter">
+                <option v-for="(matter, index) in avm" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'ESE'" v-model="matter">
+                <option v-for="(matter, index) in ese" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'GI'" v-model="matter">
+                <option v-for="(matter, index) in gi" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'GM'" v-model="matter">
+                <option v-for="(matter, index) in gm" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'ICY'" v-model="matter">
+                <option v-for="(matter, index) in icy" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'Info'" v-model="matter">
+                <option v-for="(matter, index) in info" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'GCB'" v-model="matter">
+                <option v-for="(matter, index) in gcb" :key="index" :value="matter">{{ matter }}</option>
+              </select>
+              <select name="matiere" v-if="specialities == 'GEII'" v-model="matter">
+                <option v-for="(matter, index) in geii" :key="index" :value="matter">{{ matter }}</option>
               </select>
             </div>
             <div>
@@ -44,7 +71,7 @@
             </div>
             <div>
               <label for="teacher">Nom du chargé de cours</label>
-              <input type="test" v-model="teacher" name="teacher">
+              <input type="text" v-model="teacher" name="teacher">
             </div>
             <div>
               <label for="specialities">Choisissez la spétialité</label>
@@ -57,7 +84,6 @@
                 <option value="Info">Info</option>
                 <option value="GCB">GCB</option>
                 <option value="ICY">ICY</option>
-                <option value="GI(FISE)">GI(FISE)</option>
                 <option value="GI">GI</option>
                 <option value="IIA">IIA</option>
                 <option value="GEII">GEII</option>
@@ -65,7 +91,7 @@
             </div>
           </div>
           <div id="drop-zone" @dragover.prevent="handleDragOver" @drop.prevent="handleDrop" @click="handleClick"> {{ fileName || ' Faites glisser un fichier ici' }}</div>
-          <input type="file" ref="fileInput" id="file-input" name="file" style="display: none;" @change="handleFileChange">
+          <input accept="application/pdf" type="file" ref="fileInput" id="file-input" name="file" style="display: none;" @change="handleFileChange">
           <div class="checkbox">
             <label for="conditions">Accepter les <router-link class="router-link" to="/cgu">Conditions Générales <ion-icon name="open"></ion-icon></router-link></label>
             <input type="checkbox" v-model="check" name="conditons">
@@ -73,10 +99,10 @@
         </div>
         <div class="form_footer">
           <div class="btn btn-secondary btn-icon-backward">
-            <a href="cours.html">
+            <router-link to="/cours" class="router-link">
               <IonIcon name="arrow-back"></IonIcon>
               <div>Retour</div>
-            </a>
+            </router-link>
           </div>
           <div class="btn btn-primary btn-icon-forward btn-submit-cours pointer" @click="validate">
             <div>
@@ -97,6 +123,10 @@
         </div>
       </div>
     </div>
+    <ErrorModal :errorModalVisible="errorModalVisible" :message="errorMessage"
+                @update:errorModalVisible="updateErrorModal"></ErrorModal>
+
+    <SuccessModal :showModal="showModal"></SuccessModal>
   </section>
 </template>
 
@@ -104,25 +134,43 @@
 import { IonIcon } from '@ionic/vue';
 import {ref} from "vue";
 import axios from "axios";
+import ErrorModal from "@/components/modal/ErrorModal.vue";
+import anime from "animejs";
+import SuccessModal from "@/components/modal/SuccessModal.vue";
 export default {
   components: {
-    IonIcon
+    IonIcon,
+    ErrorModal,
+    SuccessModal
   },
   data(){
     const first = ["analyse", "algèbre", "outil mathématique", "algo", "électrostatique", "électrocinétique", "mécanique", "thermodynamique", "chimie des matériaux", "proba", "magnétostatique", "optique géométrique", "automatique"];
     const second = ["analyse", "algèbre", "algo", "base de donnée", "architecture", "électromagnétisme", "physique des ondes", "optique ondulatoire", "automatique", "calcul formel", "thermodynamique", "analyse numérique", "programmation orientée objet", "génie logiciel"];
-    const third = ["compta", "équipement vidéo", "équipement audio", "analyse et traitement des signaux",
-      "transmission audio", "C", "POO, C++", "infographie", "réseau multimédia", "dev web", "communication",
-      "psycho", "filmologie", "algo", "outil mathématique", "électronique", "électrotechnique",
-      "traitement du signal", "automatique", "composant de l'électronique", "conversion analogique",
-      "synthèse logique", "transmission numérique", "IoT", "canaux de propagation", "analyse", "probabilité",
-      "analyse numérique", "gros oeuvre", "second oeuvres", "maquette numérique", "conception architectural",
-      "lecture et analyse de plan", "étude de prix", "économie de la maitrise de l'oeuvre", "rdm", "mécanique des système",
-      "mécanique des sols", ""];
+    const mt = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const ese =["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const iia = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const geii = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const gm = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const info = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const icy = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const gi = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const gcb = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const me = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
     return {
+      errorModalVisible: false,
+      errorMessage: "",
       first,
       second,
-      third,
+      mt,
+      me,
+      ese,
+      gi,
+      gcb,
+      icy,
+      info,
+      iia,
+      geii,
+      gm,
       promotion: '1A',
       specialities: '',
       fileName: null,
@@ -131,21 +179,58 @@ export default {
       type: "CM",
       teacher: '',
       file: null,
-      check: ''
+      check: '',
+      showModal: false
     }
   },
   methods: {
+    animateModal() {
+      this.showModal = true;
+      anime({
+        targets: '.modal-content',
+        scale: [0, 1],
+        opacity: [0, 1],
+        easing: 'easeOutQuad',
+        duration: 500,
+        delay: 300,
+        complete: () => {
+          setTimeout(() => {
+            this.$router.push('/');
+          }, 1000);
+        },
+      });
+    },
+    showErrorModal(message) {
+      this.errorMessage = message;
+      this.errorModalVisible = true;
+      this.$nextTick(() => {
+        anime({
+          targets: this.$refs.overlay,
+          opacity: 1,
+          duration: 500,
+        });
+        anime({
+          targets: ".error-modal",
+          translateX: ["200%", "0%"],
+          easing: 'easeOutElastic(.5, .3)',
+          duration: 500
+        });
+      })
+    },
+    updateErrorModal(value) {
+      this.errorModalVisible = value;
+    },
     validate(){
       if (this.matter.length <= 0 || this.teacher <= 0 || this.file == null){
-        console.log("non")
+        this.showErrorModal("Champ manquant !")
         return;
       }
       if (this.promotion == "3A" && this.specialities.length <= 0) {
-        console.log("non2")
+        this.showErrorModal("Veuillez saisir la spécialité concerné !")
         return;
       }
       if (this.check != true) {
-        console.log("non3")
+        this.showErrorModal("Vous n'avez pas validé les Conditions générales")
         return;
       }
       const extension = "." + this.file.name.split(".").pop();
@@ -160,10 +245,18 @@ export default {
       }, {
         withCredentials: true,
         headers: {
-          'Content-Type': 'multipart/form-data', // Ajoutez cette ligne pour indiquer que vous envoyez des données de formulaire
+          'Content-Type': 'multipart/form-data',
         },
+      }, {
+        validateStatus: function (status) {
+          return status === 201 || status === 500 || status === 403;
+        }
       }).then((res) => {
-        console.log(res)
+            if (res.status == 500 || res.status == 403) {
+              this.showErrorModal(res.data.message);
+              return;
+            }
+          this.animateModal()
       })
     },
     handleDragOver(event) {
@@ -187,11 +280,26 @@ export default {
     },
     handleFile(file) {
       if (file) {
-        this.fileName = file.name;
+        if (file.type === 'application/pdf') {
+          this.fileName = file.name;
+        } else {
+          this.showErrorModal("Veuillez saisir un pdf !")
+          this.fileName = null;
+          this.file = null;
+        }
       } else {
         this.fileName = null;
       }
     },
+  },
+  watch: {
+    promotion(newPromotion) {
+      if (newPromotion !== "3A") {
+        this.specialities = "";
+      } else {
+        this.specialities = "MT";
+      }
+    }
   },
   computed: {
     disableSelect() {
@@ -212,7 +320,11 @@ export default {
 @import "../../../utils/computer/variables.scss";
 
 #sect5 {
-
+  position: relative;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:before {
     position: absolute;

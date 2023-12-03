@@ -9,6 +9,7 @@
       <div class="file-date-added">{{ date }}</div>
     </div>
     <h4>{{ matter }}</h4>
+    <h5>{{ name }}</h5>
     <div class="file-cta">
       <a :href="getFile(path)" target="_blank">
         <div class="btn btn-primary btn-icon-forward pointer">
@@ -27,15 +28,20 @@
       </div>
     </div>
   </div>
+  <ErrorModal :errorModalVisible="errorModalVisible" :message="errorMessage"
+              @update:errorModalVisible="updateErrorModal"></ErrorModal>
 </template>
 
 <script>
 import {IonIcon} from '@ionic/vue';
 import axios from "axios";
+import ErrorModal from "@/components/modal/ErrorModal.vue";
+import anime from "animejs";
 
 export default ({
   components: {
     IonIcon,
+    ErrorModal
   },
   methods: {
     getFile(path) {
@@ -44,17 +50,41 @@ export default ({
     downloadFile(coursPath) {
       axios.post('http://localhost:5000/cours/download', {
         filePath: coursPath
+      }, {
+        validateStatus: function (status) {
+          return status === 201 || status === 500 || status === 403;
+        }
       })
           .then((response) => {
             window.open(response.request.responseURL, '_blank');
           })
-          .catch((error) => {
-            console.error(error);
-          });
-    }
+    },
+    showErrorModal(message) {
+      this.errorMessage = message;
+      this.errorModalVisible = true;
+      this.$nextTick(() => {
+        anime({
+          targets: this.$refs.overlay,
+          opacity: 1,
+          duration: 500,
+        });
+        anime({
+          targets: ".error-modal",
+          translateX: ["200%", "0%"],
+          easing: 'easeOutElastic(.5, .3)',
+          duration: 500
+        });
+      })
+    },
+    updateErrorModal(value) {
+      this.errorModalVisible = value;
+    },
   },
-  mounted() {
-    console.log(this.path)
+  data() {
+    return {
+      errorModalVisible: false,
+      errorMessage: "",
+    }
   },
   props: {
     type: String,

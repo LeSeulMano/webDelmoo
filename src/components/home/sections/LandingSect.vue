@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="btn btn-primary btn-icon-forward">
-          <router-link class="router-link" to="/">
+          <router-link class="router-link" to="/podcast">
             <div>Regarder</div>
             <IonIcon name="play-circle"></IonIcon>
           </router-link>
@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="btn btn-primary btn-icon-forward">
-          <router-link class="router-link" to="/">
+          <router-link class="router-link" to="/shop">
             <div>Découvrir</div>
             <IonIcon name="chevron-forward"></IonIcon>
           </router-link>
@@ -72,7 +72,7 @@
           </div>
         </div>
         <div class="btn btn-primary btn-icon-forward">
-          <router-link class="router-link" to="/">
+          <router-link class="router-link" to="/cours">
             <div>Voir les cours</div>
             <IonIcon name="pencil"></IonIcon>
           </router-link>

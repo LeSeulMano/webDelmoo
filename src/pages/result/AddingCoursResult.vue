@@ -20,7 +20,6 @@ export default ({
 @import '../../utils/computer/components.scss';
 
 main {
-  overflow: hidden;
 }
 
 </style>

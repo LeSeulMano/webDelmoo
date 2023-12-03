@@ -5,8 +5,9 @@ import ResultCours from "../pages/result/ResultCoursPage.vue";
 import LoginPage from "@/pages/LoginPage.vue";
 import AddingCoursResult from "@/pages/result/AddingCoursResult.vue";
 import CguPage from "@/pages/legacy/CguPage.vue";
-import {checkAdminPermission} from "@/components/auth/authService";
+// import {checkAdminPermission} from "@/components/auth/authService";
 import AdminPage from "@/pages/staff/AdminPage.vue";
+import SoonPage from "@/pages/SoonPage.vue";
 
 const routes = [
     {
@@ -44,7 +45,17 @@ const routes = [
         name: "Admin",
         path: "/admin",
         component: AdminPage,
-        meta: { requiresAuth: true, requiresAdmin: true },
+        // meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        name: "Podcast",
+        path: '/podcast',
+        component: SoonPage
+    },
+    {
+        name: "Shop",
+        path: "/shop",
+        component: SoonPage
     }
 ];
 
@@ -53,24 +64,24 @@ const router = createRouter({
     routes,
 })
 
-router.beforeEach((to, from, next) => {
-    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-    const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
-    const isLoggedIn = document.cookie.includes('token=');
-    if (requiresAuth || requiresAdmin) {
-        checkAdminPermission().then((res) => {
-            if (requiresAuth && !isLoggedIn) {
-                next('/login');
-            } else if (requiresAdmin && !res) {
-                next('/');
-            } else {
-                next();
-            }
-        })
-    }
-    else {
-        next();
-    }
-});
+// router.beforeEach((to, from, next) => {
+//     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+//     const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
+//     const isLoggedIn = document.cookie.includes('token=');
+//     if (requiresAuth || requiresAdmin) {
+//         checkAdminPermission().then((res) => {
+//             if (requiresAuth && !isLoggedIn) {
+//                 next('/login');
+//             } else if (requiresAdmin && !res) {
+//                 next('/');
+//             } else {
+//                 next();
+//             }
+//         })
+//     }
+//     else {
+//         next();
+//     }
+// });
 
 export default router;

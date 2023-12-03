@@ -21,7 +21,7 @@
                   <div>Retour</div>
                 </router-link>
               </div>
-              <div class="btn btn-primary btn-icon-forward btn-submit-connexion" @click="connexion">
+              <div class="btn pointer btn-primary btn-icon-forward btn-submit-connexion" @click="connexion">
                 <div>
                   <div>Connexion</div>
                   <IonIcon name="arrow-forward"></IonIcon>
@@ -33,19 +33,26 @@
         <div class="inscription">
           <form>
             <label for="username">Pseudo</label>
-            <input type="text" name="username" placeholder="Entrez votre pseudo" required>
+            <input v-model="username" type="text" name="username" placeholder="Entrez votre pseudo" required>
 
-            <label for="email">Email</label>
-            <input type="email" name="email" placeholder="Entrez votre email" required>
-
-            <label for="netudiant">N° étudiant</label>
-            <input type="text" name="netudiant" placeholder="Entrez votre n° étudiant" required>
+            <label for="email">Email (uphf)</label>
+            <input v-model="email" type="email" name="email" placeholder="Entrez votre email" required>
 
             <label for="mot_de_passe">Mot de passe</label>
-            <input type="password" name="mot_de_passe" placeholder="Entrez votre mot de passe">
+            <input v-model="password" type="password" name="mot_de_passe" placeholder="Entrez votre mot de passe">
 
             <label for="mot_de_passe">Confirmation Mot de passe</label>
-            <input type="password" name="mot_de_passe" placeholder="Entrez votre mot de passe">
+            <input v-model="repeatPassword" type="password" name="mot_de_passe"
+                   placeholder="Repetez votre mot de passe">
+
+            <div class="checkbox">
+              <label for="conditions">Accepter les
+                <router-link class="router-link" to="/cgu">Conditions Générales
+                  <ion-icon name="open"></ion-icon>
+                </router-link>
+              </label>
+              <input type="checkbox" v-model="check" name="conditons">
+            </div>
 
             <div class="btn-action">
               <div class="btn btn-secondary btn-icon-backward">
@@ -54,7 +61,7 @@
                   <div>Retour</div>
                 </router-link>
               </div>
-              <div class="btn btn-primary btn-icon-forward btn-submit-inscription">
+              <div class="btn btn-primary pointer btn-icon-forward btn-submit-inscription" @click="register">
                 <div>
                   <div>Inscription</div>
                   <IonIcon name="arrow-forward"></IonIcon>
@@ -65,27 +72,75 @@
         </div>
       </div>
     </div>
+    <ErrorModal :errorModalVisible="errorModalVisible" :message="errorMessage"
+                @update:errorModalVisible="updateErrorModal"></ErrorModal>
+
+    <RegisterModal :showModal="showModal"></RegisterModal>
   </section>
 </template>
 
 <script>
 import {IonIcon} from '@ionic/vue';
-import {ref} from "vue";
 import axios from "axios";
+import RegisterModal from "@/components/modal/RegisterModal.vue";
+import ErrorModal from "@/components/modal/ErrorModal.vue";
+import anime from "animejs";
 
 export default {
   components: {
+    ErrorModal, RegisterModal,
     IonIcon,
   },
   data() {
-    let student_number = ref("");
-    let password = ref('');
     return {
-      student_number,
-      password
+      student_number: '',
+      password: '',
+      showModal: false,
+      errorModalVisible: false,
+      errorMessage: "",
+      username: '',
+      email: '',
+      repeatPassword: '',
+      check: ''
     }
   },
   methods: {
+    animateModal() {
+      this.showModal = true;
+      anime({
+        targets: '.modal-content',
+        scale: [0, 1],
+        opacity: [0, 1],
+        easing: 'easeOutQuad',
+        duration: 500,
+        delay: 300,
+        complete: () => {
+          setTimeout(() => {
+            this.$router.push('/');
+          }, 1000);
+        },
+      });
+    },
+    showErrorModal(message) {
+      this.errorMessage = message;
+      this.errorModalVisible = true;
+      this.$nextTick(() => {
+        anime({
+          targets: this.$refs.overlay,
+          opacity: 1,
+          duration: 500,
+        });
+        anime({
+          targets: ".error-modal",
+          translateX: ["200%", "0%"],
+          easing: 'easeOutElastic(.5, .3)',
+          duration: 500
+        });
+      })
+    },
+    updateErrorModal(value) {
+      this.errorModalVisible = value;
+    },
     show(elt) {
       elt.style.position = 'relative'
       elt.style.visibility = 'visible'
@@ -99,7 +154,6 @@ export default {
       elt.style.maxHeight = '0'
     },
     showConnexion() {
-      console.log("oui")
       let inscriptionForm = document.querySelector('.inscription')
       let inscriptionH2 = document.querySelector('h2[action="inscription"]')
 
@@ -121,8 +175,37 @@ export default {
       this.show(inscriptionForm)
       this.hide(connexionForm)
     },
+    register() {
+      if (!this.email || !this.username || !this.password || !this.repeatPassword) {
+        this.showErrorModal("Des champs sont manquant");
+        return;
+      }
+      if (this.check != true) {
+        this.showErrorModal("Veuillez accepter les cgu");
+        return;
+      }
+      axios.post("http://localhost:5000/register", {
+            password: this.password,
+            repeatPassword: this.repeatPassword,
+            username: this.username,
+            email: this.email
+          },
+          {
+            validateStatus: function (status) {
+              return status === 409 || status === 500 || status === 200;
+            }
+          }).then((res) => {
+        if (res.status == 500 || res.status == 409) {
+          this.showErrorModal(res.data.message);
+          return;
+        } else {
+          this.animateModal();
+        }
+      })
+    },
     connexion() {
       if (!this.password || !this.student_number) {
+        this.showErrorModal("Veuillez spécifié votre mail et votre mot de passe");
         return;
       }
       axios.post('http://localhost:5000/login',
@@ -131,7 +214,19 @@ export default {
             password: this.password
           }, {
             withCredentials: true,
-          })
+          },
+          {
+            validateStatus: function (status) {
+              return status === 409 || status === 500 || status === 200;
+            }
+          }).then((res) => {
+        if (res.status == 500 || res.status == 409) {
+          this.showErrorModal(res.data.message);
+          return;
+        } else {
+          this.animateModal();
+        }
+      })
     }
   },
 
@@ -145,12 +240,10 @@ export default {
     main.style.height = screenHeight + 'px';
     document.querySelector('#section4').style.height = screenHeight + "px";
     this.showInscription();
-    // let connexionH2 = document.querySelector('h2[action="connexion"]')
     let inscriptionH2 = document.querySelector('h2[action="inscription"]')
     let connexionH2 = document.getElementById('connexion');
 
     connexionH2.addEventListener('click', () => {
-      console.log("non")
       this.showConnexion();
     });
     inscriptionH2.addEventListener('click', () => {
@@ -166,7 +259,11 @@ export default {
 @import "../../../utils/computer/variables";
 
 #section4 {
-  padding: 0;
+  position: relative;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:before {
     display: none;
@@ -239,6 +336,87 @@ export default {
       }
 
       form {
+
+        .checkbox {
+          display: flex;
+          align-items: center;
+          margin-top: 1.5rem;
+
+          label {
+            .router-link {
+              position: relative;
+              font-size: $small-text;
+              color: $primary-red;
+
+              &:after {
+                position: absolute;
+                content: '';
+                width: 100%;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 2px;
+                background-color: $primary-red;
+                transition: .4s;
+              }
+
+              &:hover::after {
+                width: 50%;
+              }
+
+              ion-icon {
+                position: relative;
+                font-size: $small-text;
+                color: inherit;
+                top: .03rem;
+              }
+            }
+          }
+
+          input {
+            position: relative;
+            margin-left: 1.5rem;
+            width: 1rem;
+            height: 1rem;
+            padding: 0;
+            appearance: none;
+            -webkit-appearance: none;
+            top: -.17rem;
+
+            &::before {
+              position: absolute;
+              content: '';
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 100%;
+              background-color: transparent;
+              border: 2px solid $primary-black;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+
+            &::after {
+              position: absolute;
+              content: '';
+              top: 50%;
+              left: 50%;
+              transform: translate(-33%, -33%);
+              height: 0;
+              width: 0;
+              background-color: $primary-black;
+              border-radius: 2px;
+              transition: .3s;
+              cursor: pointer;
+            }
+
+            &:checked::after {
+              width: 70%;
+              height: 70%;
+            }
+          }
+
+        }
 
         label {
           font-size: $small-text;

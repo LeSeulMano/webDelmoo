@@ -15,10 +15,10 @@
           </router-link>
         </li>
         <li>
-          <router-link class="router-link" :class="selected == 3 ? 'onPage' : ''" to="/">Podcast</router-link>
+          <router-link class="router-link" :class="selected == 3 ? 'onPage' : ''" to="/podcast">Podcast</router-link>
         </li>
         <li>
-          <router-link class="router-link " :class="selected == 4 ? 'onPage' : ''" to="/">Shop</router-link>
+          <router-link class="router-link " :class="selected == 4 ? 'onPage' : ''" to="/shop">Shop</router-link>
         </li>
       </ul>
       <div class="account">
