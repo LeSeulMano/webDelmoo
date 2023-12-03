@@ -1,37 +1,37 @@
 <template>
   <header id="admin-header">
     <nav>
-      <div class="btn btn-icon-forward btn-admin-choice" :class="selected == 0 ? 'btn-secondary' : 'btn-primary'">
+      <div class="btn pointer btn-icon-forward btn-admin-choice" :class="selected == 0 ? 'btn-secondary' : 'btn-primary'" @click="selectPage(0)">
         <div>
           <div>Users</div>
           <IonIcon name="person-outline"></IonIcon>
         </div>
       </div>
-      <div class="btn btn-icon-forward btn-admin-choice" :class="selected == 1 ? 'btn-secondary' : 'btn-primary'">
+      <div class="btn pointer btn-icon-forward btn-admin-choice" :class="selected == 1 ? 'btn-secondary' : 'btn-primary'" @click="selectPage(1)">
         <div>
           <div>Cours</div>
           <IonIcon name="document-outline"></IonIcon>
         </div>
       </div>
-      <div class="btn btn-icon-forward btn-admin-choice" :class="selected == 2 ? 'btn-secondary' : 'btn-primary'">
+      <div class="btn pointer btn-icon-forward btn-admin-choice" :class="selected == 2 ? 'btn-secondary' : 'btn-primary'" @click="selectPage(2)">
         <div>
           <div>Podcast</div>
           <IonIcon name="mic-outline"></IonIcon>
         </div>
       </div>
-      <div class="btn btn-icon-forward btn-admin-choice" :class="selected == 3 ? 'btn-secondary' : 'btn-primary'">
+      <div class="btn pointer btn-icon-forward btn-admin-choice" :class="selected == 3 ? 'btn-secondary' : 'btn-primary'" @click="selectPage(3)">
         <div>
           <div>Merch</div>
           <IonIcon name="cut-outline"></IonIcon>
         </div>
       </div>
-      <div class="btn btn-icon-forward btn-admin-choice" :class="selected == 4 ? 'btn-secondary' : 'btn-primary'">
+      <div class="btn pointer btn-icon-forward btn-admin-choice" :class="selected == 4 ? 'btn-secondary' : 'btn-primary'" @click="selectPage(4)">
         <div>
           <div>Tutorat</div>
           <IonIcon name="pencil-outline"></IonIcon>
         </div>
       </div>
-      <div class="btn btn-primary btn-icon-forward btn-admin-choice" :class="selected == 5 ? 'btn-secondary' : 'btn-primary'">
+      <div class="btn pointer btn-primary btn-icon-forward btn-admin-choice" :class="selected == 5 ? 'btn-secondary' : 'btn-primary'" @click="selectPage(5)">
         <div>
           <div>Manage</div>
           <IonIcon name="desktop-outline"></IonIcon>
@@ -47,6 +47,11 @@ export default {
   components: {IonIcon},
   props: {
     selected: Number
+  },
+  methods: {
+    selectPage(index) {
+      this.$emit('selectPage', index);
+    }
   }
 }
 </script>

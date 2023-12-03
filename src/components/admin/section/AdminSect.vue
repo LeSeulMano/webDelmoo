@@ -1,7 +1,7 @@
 <template>
-    <AdminHeader :selected="1"></AdminHeader>
-    <AdminUser :adminUser="false"></AdminUser>
-  <AdminCours :adminUser="true"></AdminCours>
+    <AdminHeader :selected="selectedPage" @selectPage="handleSelectPage"></AdminHeader>
+    <AdminUser :adminUser="selectedPage === 0"></AdminUser>
+    <AdminCours :adminUser="selectedPage === 1"></AdminCours>
 </template>
 
 <script>
@@ -13,7 +13,17 @@ export default {
     AdminHeader,
     AdminUser,
     AdminCours
-  }
+  },
+  data() {
+    return {
+      selectedPage: 0,
+    };
+  },
+  methods: {
+    handleSelectPage(index) {
+      this.selectedPage = index;
+    },
+  },
 }
 </script>
 

@@ -22,9 +22,9 @@
         </li>
       </ul>
       <div class="account">
-        <router-link to="/login" class="router-link"><IonIcon name="person" class="account-icon selected"></IonIcon></router-link>
-        <IonIcon name="log-out" class="account-icon"></IonIcon>
-        <IonIcon name="document" class="account-icon"></IonIcon>
+        <router-link to="/login" class="account-icon router-link not-connected"><IonIcon name="person"></IonIcon></router-link>
+        <IonIcon name="log-out" class="account-icon connected" @click="logout"></IonIcon>
+        <router-link to="/admin" class="router-link connected account-icon"><IonIcon name="document"></IonIcon></router-link>
       </div>
       <div class="burger-menu" id="menu-opener" @click="menuOpener">
         <div></div>
@@ -38,6 +38,7 @@
 
 <script>
 import { IonIcon } from "@ionic/vue";
+import axios from "axios";
 
 export default {
   components: {
@@ -57,8 +58,31 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
+    axios.get("http://localhost:5000/connect", {
+      withCredentials: true,
+      validateStatus: function (status) {
+        return status === 401 || status === 200;
+      }
+    }).then((res) => {
+      if (res.status == 200){
+        document.querySelectorAll(".connected")[0].classList.add('selected');
+        document.querySelectorAll(".connected")[1].classList.add('selected');
+        document.querySelectorAll(".not-connected")[0].classList.remove('selected');
+      } else {
+        document.querySelectorAll(".connected")[0].classList.remove('selected');
+        document.querySelectorAll(".connected")[1].classList.remove('selected');
+        document.querySelectorAll(".not-connected")[0].classList.add('selected');
+      }
+    })
   },
   methods: {
+    logout(){
+      axios.get('http://localhost:5000/logout', {
+        withCredentials: true
+      }).then(() => {
+        window.location.reload();
+      })
+    },
     handleScroll() {
       const header = document.querySelector('header');
       const logo = document.getElementById('navLogo');
@@ -101,7 +125,6 @@ export default {
       document.querySelector('nav').style.height = this.screenHeight + 'px';
       document.querySelector('nav ul').style.height = this.screenHeight + 'px';
 
-      // On affiche les liens vers les autres pages
       const navListItems = document.querySelectorAll('nav ul li');
       navListItems.forEach(item => {
         item.style.opacity = '1';
@@ -124,13 +147,11 @@ export default {
       const logo = document.getElementById("nav-logo");
 
       if (this.headerShrinked) {
-        // Ajouter la classe pour réduire la taille du header
         header.classList.add("header-shrink");
         logo.classList.add('header-logo-shrink')
       }
       header.style.height = '4.6rem';
 
-      // On affiche les liens vers les autres pages
       const navListItems = document.querySelectorAll('nav ul li');
       navListItems.forEach(item => {
         if (!item.classList.contains('nav-logo')) {

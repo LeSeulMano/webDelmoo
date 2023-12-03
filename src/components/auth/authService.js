@@ -5,7 +5,7 @@ function checkAdminPermission() {
         axios.get("http://localhost:5000/admin", {
             withCredentials: true,
             validateStatus: function (status) {
-                return status === 200 || status === 401; // Accepter uniquement les codes 200 (OK) et 401 (Non autorisé)
+                return status === 200 || status === 401;
             }
         }).then((res) => {
             if (res.status == 401) {

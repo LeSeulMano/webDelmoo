@@ -8,8 +8,8 @@
       <div class="choose_form_body">
         <div class="connexion">
           <form>
-            <label for="etudiant">Numéro Etudiant</label>
-            <input type="text" name="student_number" v-model="student_number" placeholder="Entrez votre numéro étudiant"
+            <label for="etudiant">Email</label>
+            <input type="email" name="email" v-model="email" placeholder="Entrez votre email uphf"
                    required>
             <label for="mot_de_passe">Mot de passe</label>
             <input type="password" name="mot_de_passe" v-model="password" placeholder="Entrez votre mot de passe"
@@ -75,7 +75,8 @@
     <ErrorModal :errorModalVisible="errorModalVisible" :message="errorMessage"
                 @update:errorModalVisible="updateErrorModal"></ErrorModal>
 
-    <RegisterModal :showModal="showModal"></RegisterModal>
+    <RegisterModal :showModal="showModalResgiter"></RegisterModal>
+    <SuccessModal :showModal="showModalLogin"></SuccessModal>
   </section>
 </template>
 
@@ -85,17 +86,18 @@ import axios from "axios";
 import RegisterModal from "@/components/modal/RegisterModal.vue";
 import ErrorModal from "@/components/modal/ErrorModal.vue";
 import anime from "animejs";
+import SuccessModal from "@/components/modal/SuccessModal.vue";
 
 export default {
   components: {
-    ErrorModal, RegisterModal,
+    ErrorModal, RegisterModal, SuccessModal,
     IonIcon,
   },
   data() {
     return {
-      student_number: '',
       password: '',
-      showModal: false,
+      showModalLogin: false,
+      showModalResgiter: false,
       errorModalVisible: false,
       errorMessage: "",
       username: '',
@@ -105,8 +107,24 @@ export default {
     }
   },
   methods: {
-    animateModal() {
-      this.showModal = true;
+    animateModalRegister() {
+      this.showModalResgiter = true;
+      anime({
+        targets: '.modal-content',
+        scale: [0, 1],
+        opacity: [0, 1],
+        easing: 'easeOutQuad',
+        duration: 500,
+        delay: 300,
+        complete: () => {
+          setTimeout(() => {
+            this.$router.push('/');
+          }, 1000);
+        },
+      });
+    },
+    animateModalLogin() {
+      this.showModalLogin = true;
       anime({
         targets: '.modal-content',
         scale: [0, 1],
@@ -199,32 +217,30 @@ export default {
           this.showErrorModal(res.data.message);
           return;
         } else {
-          this.animateModal();
+          this.animateModalRegister();
         }
       })
     },
     connexion() {
-      if (!this.password || !this.student_number) {
+      if (!this.password || !this.email) {
         this.showErrorModal("Veuillez spécifié votre mail et votre mot de passe");
         return;
       }
       axios.post('http://localhost:5000/login',
           {
-            student_number: this.student_number,
+            email: this.email,
             password: this.password
           }, {
             withCredentials: true,
-          },
-          {
             validateStatus: function (status) {
-              return status === 409 || status === 500 || status === 200;
+              return status === 409 || status === 500 || status === 201;
             }
           }).then((res) => {
         if (res.status == 500 || res.status == 409) {
           this.showErrorModal(res.data.message);
           return;
         } else {
-          this.animateModal();
+          this.animateModalLogin();
         }
       })
     }

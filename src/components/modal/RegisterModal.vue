@@ -44,13 +44,16 @@ export default {
   overflow: hidden;
   z-index: 1000;
 
-
   .modal-content {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transform-origin: center center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 
     .icon-container {
       display: flex;

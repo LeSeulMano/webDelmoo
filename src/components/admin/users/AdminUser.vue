@@ -102,7 +102,14 @@ export default {
         case "Admin":
           return 6;
         default:
-          return -1; // Valeur par défaut si le rôle n'est pas reconnu
+          return -1;
+      }
+    },
+    updateSectionVisibility() {
+      if (!this.adminUser) {
+        document.getElementById("sect7").style.display = "none";
+      } else {
+        document.getElementById("sect7").style.display = "";
       }
     },
     validateChanges() {
@@ -132,9 +139,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.adminUser) {
-      document.getElementById("sect7").style.display = "none";
-    }
+    this.updateSectionVisibility();
     const screenHeight = window.innerHeight;
     document.querySelector('#sect7').style.height = screenHeight + "px";
     axios.get("http://localhost:5000/user", {
@@ -176,6 +181,10 @@ export default {
     })
   },
   watch: {
+    adminUser(newValue) {
+      this.isAdminUser = newValue;
+      this.updateSectionVisibility();
+    },
     'userData': {
       handler(newVal) {
         newVal.forEach(user => user.originalRole = user.role);

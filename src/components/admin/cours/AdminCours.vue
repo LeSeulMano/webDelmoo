@@ -70,7 +70,20 @@ export default {
   props: {
     adminUser: Boolean
   },
+  watch: {
+    adminUser(newValue) {
+      this.isAdminUser = newValue;
+      this.updateSectionVisibility();
+    },
+  },
   methods: {
+    updateSectionVisibility() {
+      if (!this.isAdminUser) {
+        document.getElementById("sect8").style.display = "none";
+      } else {
+        document.getElementById("sect8").style.display = "block";
+      }
+    },
     getFileURL(coursPath) {
       return `http://localhost:5000/cours/open?file=${coursPath}`;
     },
@@ -91,9 +104,7 @@ export default {
     }
   },
   mounted() {
-    if (!this.adminUser) {
-      document.getElementById("sect8").style.display = "none";
-    }
+    this.updateSectionVisibility();
     const screenHeight = window.innerHeight;
     document.querySelector('#sect8').style.height = screenHeight + "px";
 
