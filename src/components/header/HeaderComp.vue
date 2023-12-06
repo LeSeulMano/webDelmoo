@@ -1,8 +1,8 @@
 <template>
   <header id="header">
     <router-view/>
-    <nav class="header-nav">
-      <ul>
+    <nav id="header-nav" class="header-nav">
+      <ul id="ul-header">
         <li>
           <router-link class="router-link" :class="selected == 1 ? 'onPage' : ''" to="/">Accueil</router-link>
         </li>
@@ -72,7 +72,6 @@ export default {
       }
       if (window.matchMedia("(max-width: 1024px)").matches) {
 
-        // Click en dehors des items
         document.addEventListener('click', function (e) {
           if (!document.querySelector('header').contains(e.target) && document.getElementById('menu-opener').classList.contains('opened')) {
             this.closeMenu();
@@ -98,8 +97,8 @@ export default {
 
       header.style.backgroundColor = 'rgb(249, 243, 241)'; // Fond beige
       header.style.height = this.screenHeight + 'px';
-      document.querySelector('nav').style.height = this.screenHeight + 'px';
-      document.querySelector('nav ul').style.height = this.screenHeight + 'px';
+      document.getElementById('header-nav').style.height = this.screenHeight + 'px';
+      document.getElementById('ul-header').style.height = this.screenHeight + 'px';
 
       // On affiche les liens vers les autres pages
       const navListItems = document.querySelectorAll('nav ul li');
@@ -149,9 +148,9 @@ export default {
       document.querySelector('#menu-opener > div:nth-of-type(3)').style.transform = 'translateY(0) rotate(0deg)';
 
       setTimeout(() => {
-        document.querySelector('nav').style.height = '0px';
-        document.querySelector('nav ul').style.height = '0px';
-        document.querySelector('nav ul').style.visibility = 'hidden'
+        document.getElementById('header-nav').style.height = '0px';
+        document.getElementById('ul-header').style.height = '0px';
+        document.getElementById('ul-header').style.visibility = 'hidden'
       }, 400);
     }
   },
