@@ -48,15 +48,17 @@ export default ({
     }
   },
   mounted() {
-    const screenHeight = window.innerHeight;
     AOS.init();
-    document.querySelector('#sect1').style.height = screenHeight + "px";
+    this.$nextTick(() => {
+      const screenHeight = window.innerHeight;
+      document.querySelector('#sect1').style.height = screenHeight + "px";
+    });
   }
 })
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../../../utils/computer/components.scss";
 
 .sect1-cours {
