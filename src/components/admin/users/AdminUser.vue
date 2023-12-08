@@ -121,7 +121,7 @@ export default {
       if (indicesNonCorrespondants.length === 0) {
         console.log("Les rôles correspondent pour chaque utilisateur.");
       } else {
-        axios.post("http://localhost:5000/change-role", {
+        axios.post("http://57.129.14.178:5000/change-role", {
               idUser: indicesNonCorrespondants.map(info => this.userData[info.index].id),
               newRole: indicesNonCorrespondants.map(info => info.nouveauRole)
             },
@@ -142,7 +142,7 @@ export default {
     this.updateSectionVisibility();
     const screenHeight = window.innerHeight;
     document.querySelector('#sect7').style.height = screenHeight + "px";
-    axios.get("http://localhost:5000/user", {
+    axios.get("http://57.129.14.178:5000/user", {
       withCredentials: true
     }).then((result) => {
       this.userData = JSON.parse(JSON.stringify(result.data.json));

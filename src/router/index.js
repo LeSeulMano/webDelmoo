@@ -72,7 +72,7 @@ router.beforeEach((to, from, next) => {
     if (requiresAuth || requiresAdmin) {
         checkAdminPermission().then((res) => {
             if (requiresAuth && !isLoggedIn) {
-                next('/login');
+                next();
             } else if (requiresAdmin && !res) {
                 next('/');
             } else if (requiresAuth && isLoggedIn && !requiresAdmin){

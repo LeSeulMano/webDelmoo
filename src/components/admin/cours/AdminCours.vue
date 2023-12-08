@@ -85,10 +85,10 @@ export default {
       }
     },
     getFileURL(coursPath) {
-      return `http://localhost:5000/cours/open?file=${coursPath}`;
+      return `http://57.129.14.178:5000/cours/open?file=${coursPath}`;
     },
     valide(name, teacher, promotion, type, matter, year, author, id) {
-      axios.post(`http://localhost:5000/cours/valide`, {
+      axios.post(`http://57.129.14.178:5000/cours/valide`, {
             name: name,
             teacher: teacher,
             promotion: promotion,
@@ -108,7 +108,7 @@ export default {
     const screenHeight = window.innerHeight;
     document.querySelector('#sect8').style.height = screenHeight + "px";
 
-    axios.get("http://localhost:5000/admin/cours").then((res) => {
+    axios.get("http://57.129.14.178:5000/admin/cours").then((res) => {
       this.coursData = res.data.json;
     })
 
