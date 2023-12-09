@@ -76,7 +76,7 @@ router.beforeEach((to, from, next) => {
             } else if (requiresAdmin && !res) {
                 next('/');
             } else if (requiresAuth && isLoggedIn && !requiresAdmin){
-                next('/');
+                next('/'); // temporaire
             } else {
                 next();
             }
