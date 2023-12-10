@@ -21,17 +21,17 @@
           <router-link class="router-link " :class="selected == 4 ? 'onPage' : ''" to="/shop">Shop</router-link>
         </li>
       </ul>
-      <div class="account">
-        <router-link to="/login" class="account-icon router-link not-connected"><IonIcon name="person"></IonIcon></router-link>
-        <IonIcon name="log-out" class="account-icon connected" @click="logout"></IonIcon>
-        <router-link to="/admin" class="router-link connected account-icon"><IonIcon name="document"></IonIcon></router-link>
-      </div>
       <div class="burger-menu" id="menu-opener" @click="menuOpener">
         <div></div>
         <div></div>
         <div></div>
       </div>
     </nav>
+    <div class="account">
+      <router-link to="/login" class="account-icon router-link not-connected login" data-tooltip="Connexion"><IonIcon name="person"></IonIcon></router-link>
+      <div class="account-icon connected logout" @click="logout" data-tooltip="Déconnexion"><IonIcon name="log-out"></IonIcon></div>
+      <router-link to="/admin" class="router-link connected account-icon compte" data-tooltip="Compte"><IonIcon name="document"></IonIcon></router-link>
+    </div>
   </header>
 
 </template>
@@ -58,7 +58,7 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
-    axios.get("http://localhost:5000/connect", {
+    axios.get("http://57.129.14.178:5000/connect", {
       withCredentials: true,
       validateStatus: function (status) {
         return status === 401 || status === 200;
@@ -73,11 +73,15 @@ export default {
         document.querySelectorAll(".connected")[1].classList.remove('selected');
         document.querySelectorAll(".not-connected")[0].classList.add('selected');
       }
+    }).catch(() => {
+      document.querySelectorAll(".connected")[0].classList.remove('selected');
+      document.querySelectorAll(".connected")[1].classList.remove('selected');
+      document.querySelectorAll(".not-connected")[0].classList.add('selected');
     })
   },
   methods: {
     logout(){
-      axios.get('http://localhost:5000/logout', {
+      axios.get('http://57.129.14.178:5000/logout', {
         withCredentials: true
       }).then(() => {
         window.location.reload();
@@ -181,7 +185,6 @@ export default {
 <style lang="scss">
 @import '../../utils/computer/components';
 
-
 header {
   position: fixed;
   display: flex;
@@ -194,6 +197,8 @@ header {
   transition: .3s;
 
   .header-nav {
+
+    display: flex;
 
     .nav-logo {
       position: relative;
@@ -266,24 +271,64 @@ header {
       }
     }
 
-    .account {
-      position: relative;
-      left: 60rem;
-      top: -2rem;
-      .account-icon{
-        margin-right: .5rem;
-        font-size: 1rem;
-        cursor: pointer;
-        color: black;
-
-        &:not(.selected){
-          display: none;
-        }
-      }
-    }
 
     .burger-menu {
       display: none;
+    }
+  }
+
+  .account {
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    color: inherit;
+    margin-right: 1rem;
+    padding: 1rem;
+    display: flex;
+
+    .account-icon {
+      margin-right: 1.4rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: black;
+
+      &:not(.selected) {
+        display: none;
+      }
+    }
+    .account-icon::after{
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -25px;
+      transform: translateX(-50%);
+      background-color: rgba(249, 243, 241, 0.5);
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      backdrop-filter: blur(10px);
+      color: rgb(75, 75, 75);
+      font-weight: bold;
+      padding: 5px;
+      font-size: 1rem;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+
+      &.compte{
+        left: 60%;
+      }
+      &.logout{
+        left: 30%
+      }
+      &.login{
+        left: 40%;
+      }
+
+    }
+    .account-icon:hover::after{
+      opacity: 1;
+    }
+    .logout{
+      font-size: 1.2rem;
     }
   }
 }
@@ -302,7 +347,7 @@ header {
       display: block;
       width: 85%;
       margin: 0 auto;
-      padding: 1.8rem 0;
+      padding: .4rem 0;
       height: 1px;
 
       .nav-logo {
@@ -403,22 +448,6 @@ header {
         }
       }
 
-      .account {
-        position: relative;
-        left: 23rem;
-        top: 1rem;
-        .account-icon{
-          margin-right: .5rem;
-          font-size: 1rem;
-          cursor: pointer;
-          color: black;
-
-          &:not(.selected){
-            display: none;
-          }
-        }
-      }
-
       .burger-menu {
         position: relative;
         left: 0;
@@ -428,6 +457,8 @@ header {
         flex-direction: column;
         height: 1.3rem;
         width: 1.8rem;
+        top: .4rem;
+        padding: 1rem;
 
         div {
           position: relative;
@@ -438,7 +469,29 @@ header {
           transition: .4s;
         }
       }
+
     }
+    .account{
+      position: absolute;
+      top: .6rem;
+      padding: 1rem;
+      right: 0;
+
+      .account-icon {
+        margin-right: 1.4rem;
+        cursor: pointer;
+        color: black;
+
+        ion-icon{
+          font-size: 1.2rem;
+        }
+
+        &:not(.selected) {
+          display: none;
+        }
+      }
+    }
+
   }
 
 }

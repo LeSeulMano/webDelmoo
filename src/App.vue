@@ -5,13 +5,38 @@
       </router-link>
     </nav>
     <router-view/>
+    <CookieBanner @accept-cookies="activateGoogleAnalytics"></CookieBanner>
   </div>
 </template>
 
 <script>
-
+import CookieBanner from '@/components/modal/CookieModal.vue';
 export default {
   name: 'App',
+  components: {
+    CookieBanner
+  },
+  methods: {
+    activateGoogleAnalytics() {
+      if (this.$cookies.get('cookiesAccepted') === 'true') {
+        // Inclure ici le code d'inclusion du script Google Analytics
+        const script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_ANALYTICS_ID';
+        script.async = true;
+        document.head.appendChild(script);
+
+        script.onload = () => {
+          // Initialiser Google Analytics
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            window.dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'YOUR_ANALYTICS_ID');
+        };
+      }
+    },
+  },
 }
 </script>
 

@@ -16,7 +16,7 @@
           </div>
           <div class="info-article">
             <IonIcon name="person"></IonIcon>
-            <div>Yacine, Maurin et toute la clique</div>
+            <div>Yacine, Marin et toute la clique</div>
           </div>
         </div>
         <div class="btn btn-primary btn-icon-forward">

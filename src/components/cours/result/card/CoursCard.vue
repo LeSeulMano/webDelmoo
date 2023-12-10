@@ -45,10 +45,10 @@ export default ({
   },
   methods: {
     getFile(path) {
-      return `http://localhost:5000/cours/open?file=${path}`;
+      return `http://57.129.14.178:5000/cours/open?file=${path}`;
     },
     downloadFile(coursPath) {
-      axios.post('http://localhost:5000/cours/download', {
+      axios.post('http://57.129.14.178:5000/cours/download', {
         filePath: coursPath
       }, {
         validateStatus: function (status) {
@@ -90,7 +90,7 @@ export default ({
     type: String,
     matter: String,
     name: String,
-    date: String,
+    date: Number,
     path: String
   },
 

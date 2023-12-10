@@ -3,23 +3,24 @@
     <div class="team">
       <h1 class="title-sect3"></h1>
       <div class="team-members">
-        <StaffMembers url="team1.jpg" name="Yacine" role="Président"></StaffMembers>
-        <StaffMembers url="team2.jpg" name="Marin" role="Responsable I.T."></StaffMembers>
-        <StaffMembers url="team3.webp" name="Camille" role="Trésoriere"></StaffMembers>
-        <StaffMembers url="team4.webp" name="Valentin" role="Secrétaire"></StaffMembers>
+        <StaffMembers url="Yacine.png" name="Yacine" role="Président"></StaffMembers>
+        <StaffMembers url="Marin.png" name="Marin" role="Vice Président"></StaffMembers>
+        <StaffMembers url="Nathan.png" name="Nathan" role="Trésoriere"></StaffMembers>
+        <StaffMembers url="team4" name="Gaby" role="Secrétaire"></StaffMembers>
+        <StaffMembers url="Noa.png" name="Noa" role="Co-Secrétaire"></StaffMembers>
       </div>
       <div class="team-cta">
         <div class="btn btn-primary btn-icon-forward" data-aos="fade-up" data-aos-delay="400" data-aos-duration="600">
-          <router-link class="router-link" to="/">
+          <a class="router-link" href="https://instagram.com/delmoo_off" target="_blank">
             <div>Nous rejoindre</div>
             <IonIcon name="people"></IonIcon>
-          </router-link>
+          </a>
         </div>
         <div class="btn btn-cours btn-icon-forward" data-aos="fade-up" data-aos-delay="600" data-aos-duration="600">
-          <router-link class="router-link" to="/">
-            <div>Devenir tutorant</div>
+          <a class="router-link" href="https://forms.gle/jftwurkpbc1Ambr2A">
+            <div>Devenir tuteur</div>
             <IonIcon name="school"></IonIcon>
-          </router-link>
+          </a>
         </div>
       </div>
     </div>
@@ -134,7 +135,7 @@ export default {
 
   .team {
     position: relative;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     padding-top: 17rem;
 

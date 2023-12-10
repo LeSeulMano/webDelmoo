@@ -6,7 +6,7 @@
         <div class="form_body">
           <div class="form_body_select">
             <div>
-              <label for="annee">Choississez une année</label>
+              <label for="annee">Année</label>
               <select name="annee" v-model="year">
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
@@ -15,7 +15,7 @@
               </select>
             </div>
             <div>
-              <label for="promotion">Choississez un niveau</label>
+              <label for="promotion">Niveau</label>
               <select name="promotion" v-model="promotion">
                 <option value="1A" selected>1A</option>
                 <option value="2A">2A</option>
@@ -23,7 +23,7 @@
               </select>
             </div>
             <div>
-              <label for="matiere">Choississez une matière</label>
+              <label for="matiere">Matière</label>
               <select name="matiere" v-if="promotion == '1A'" v-model="matter">
                 <option v-for="(matter, index) in first" :key="index" :value="matter">{{ matter }}</option>
               </select>
@@ -36,33 +36,18 @@
               <select name="matiere" v-if="specialities == 'ME'" v-model="matter">
                 <option v-for="(matter, index) in me" :key="index" :value="matter">{{ matter }}</option>
               </select>
-              <select name="matiere" v-if="specialities == 'AVM'" v-model="matter">
-                <option v-for="(matter, index) in avm" :key="index" :value="matter">{{ matter }}</option>
-              </select>
-              <select name="matiere" v-if="specialities == 'ESE'" v-model="matter">
-                <option v-for="(matter, index) in ese" :key="index" :value="matter">{{ matter }}</option>
-              </select>
               <select name="matiere" v-if="specialities == 'GI'" v-model="matter">
                 <option v-for="(matter, index) in gi" :key="index" :value="matter">{{ matter }}</option>
-              </select>
-              <select name="matiere" v-if="specialities == 'GM'" v-model="matter">
-                <option v-for="(matter, index) in gm" :key="index" :value="matter">{{ matter }}</option>
-              </select>
-              <select name="matiere" v-if="specialities == 'ICY'" v-model="matter">
-                <option v-for="(matter, index) in icy" :key="index" :value="matter">{{ matter }}</option>
-              </select>
-              <select name="matiere" v-if="specialities == 'Info'" v-model="matter">
-                <option v-for="(matter, index) in info" :key="index" :value="matter">{{ matter }}</option>
               </select>
               <select name="matiere" v-if="specialities == 'GCB'" v-model="matter">
                 <option v-for="(matter, index) in gcb" :key="index" :value="matter">{{ matter }}</option>
               </select>
-              <select name="matiere" v-if="specialities == 'GEII'" v-model="matter">
-                <option v-for="(matter, index) in geii" :key="index" :value="matter">{{ matter }}</option>
+              <select name="matiere" v-if="specialities == 'IIA'" v-model="matter">
+                <option v-for="(matter, index) in iia" :key="index" :value="matter">{{ matter }}</option>
               </select>
             </div>
             <div>
-              <label for="type">Choississez un type</label>
+              <label for="type">Type</label>
               <select name="type" v-model="type">
                 <option value="CM" selected>CM</option>
                 <option value="TD">TD</option>
@@ -74,26 +59,27 @@
               <input type="text" v-model="teacher" name="teacher">
             </div>
             <div>
-              <label for="specialities">Choisissez la spétialité</label>
+              <label for="specialities">Spécialité</label>
               <select name="specialities" v-model="specialities" :disabled="disableSelect">
                 <option value="MT">MT</option>
                 <option value="ME">ME</option>
-                <option value="AVM">AVM</option>
-                <option value="ESE">ESE</option>
-                <option value="GM">GM</option>
-                <option value="Info">Info</option>
                 <option value="GCB">GCB</option>
-                <option value="ICY">ICY</option>
                 <option value="GI">GI</option>
                 <option value="IIA">IIA</option>
-                <option value="GEII">GEII</option>
               </select>
             </div>
           </div>
-          <div id="drop-zone" @dragover.prevent="handleDragOver" @drop.prevent="handleDrop" @click="handleClick"> {{ fileName || ' Faites glisser un fichier ici' }}</div>
-          <input accept="application/pdf" type="file" ref="fileInput" id="file-input" name="file" style="display: none;" @change="handleFileChange">
+          <div id="drop-zone" @dragover.prevent="handleDragOver" @drop.prevent="handleDrop" @click="handleClick">
+            {{ fileName || ' Faites glisser un fichier ici' }}
+          </div>
+          <input accept="application/pdf" type="file" ref="fileInput" id="file-input" name="file" style="display: none;"
+                 @change="handleFileChange">
           <div class="checkbox">
-            <label for="conditions">Accepter les <router-link class="router-link" to="/cgu">Conditions Générales <ion-icon name="open"></ion-icon></router-link></label>
+            <label for="conditions">Accepter les
+              <router-link class="router-link" to="/cgu">Conditions Générales
+                <ion-icon name="open"></ion-icon>
+              </router-link>
+            </label>
             <input type="checkbox" v-model="check" name="conditons">
           </div>
         </div>
@@ -113,7 +99,8 @@
         </div>
       </form>
       <div class="sent">
-        <h3>Votre demande d'ajout de cours a bien été envoyé ! <br> Elle sera vérifiée par un membre de l'équipe avant publication.</h3>
+        <h3>Votre demande d'ajout de cours a bien été envoyé ! <br> Elle sera vérifiée par un membre de l'équipe avant
+          publication.</h3>
         <h3>Merci de participer à l'entretien des cours de Delmoo !</h3>
         <div class="btn btn-primary btn-icon-forward">
           <router-link class="router-link" to="/">
@@ -127,35 +114,35 @@
                 @update:errorModalVisible="updateErrorModal"></ErrorModal>
 
     <SuccessModal :showModal="showModal"></SuccessModal>
+
+    <LoadingOverlay :loading="loading" />
   </section>
 </template>
 
 <script>
-import { IonIcon } from '@ionic/vue';
+import {IonIcon} from '@ionic/vue';
 import {ref} from "vue";
 import axios from "axios";
 import ErrorModal from "@/components/modal/ErrorModal.vue";
 import anime from "animejs";
 import SuccessModal from "@/components/modal/SuccessModal.vue";
+import LoadingOverlay from "@/components/modal/WaitingModal.vue";
+
 export default {
   components: {
     IonIcon,
     ErrorModal,
-    SuccessModal
+    SuccessModal,
+    LoadingOverlay
   },
-  data(){
-    const first = ["analyse", "algèbre", "outil mathématique", "algo", "électrostatique", "électrocinétique", "mécanique", "thermodynamique", "chimie des matériaux", "proba", "magnétostatique", "optique géométrique", "automatique"];
-    const second = ["analyse", "algèbre", "algo", "base de donnée", "architecture", "électromagnétisme", "physique des ondes", "optique ondulatoire", "automatique", "calcul formel", "thermodynamique", "analyse numérique", "programmation orientée objet", "génie logiciel"];
+  data() {
+    const first = ["Analyse", "Algèbre", "OMP", "Algo", "Electrostat", "Electrocin", "Mécanique", "Thermo", "CDM", "Proba", "Magnétostatique", "Optique", "Auto"];
+    const second = ["Analyse", "Algèbre", "Algo", "BDR", "Architecture", "Electromag", "PDO", "OptiqueOndulatoire", "Auto", "ANUM", "Thermo", "CalculFormel", "POO", "GL"];
     const mt = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const ese =["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const iia = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const geii = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const gm = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const info = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const icy = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const gi = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const gcb = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const me = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const iia = ["Méca", "MPES", "Electrotechnique", "Signaux", "AnalyseSys", "CalculEmbarqué"]
+    const gi = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Proba", "Procédé", "Modélisation", "Maintenance"];
+    const gcb = ["Plan", "CAO", "GrosOeuvre", "SecondOeuvre", "Economie", "Architecture", "MecaniqueSol", "RDM"];
+    const me = ["AA", "RDM", "Fab", "Capteurs", "Electrotech", "Mecaflu", "TSM", "Conception", "Meca", "Proba", "Thermo", "MMC", "ANUM", "Energétique"];
     return {
       errorModalVisible: false,
       errorMessage: "",
@@ -163,14 +150,9 @@ export default {
       second,
       mt,
       me,
-      ese,
       gi,
       gcb,
-      icy,
-      info,
       iia,
-      geii,
-      gm,
       promotion: '1A',
       specialities: '',
       fileName: null,
@@ -180,7 +162,8 @@ export default {
       teacher: '',
       file: null,
       check: '',
-      showModal: false
+      showModal: false,
+      loading: false
     }
   },
   methods: {
@@ -220,21 +203,25 @@ export default {
     updateErrorModal(value) {
       this.errorModalVisible = value;
     },
-    validate(){
-      if (this.matter.length <= 0 || this.teacher <= 0 || this.file == null){
+    validate() {
+      this.loading = true;
+      if (this.matter.length <= 0 || this.teacher <= 0 || this.file == null) {
         this.showErrorModal("Champ manquant !")
+        this.loading = false;
         return;
       }
       if (this.promotion == "3A" && this.specialities.length <= 0) {
         this.showErrorModal("Veuillez saisir la spécialité concerné !")
+        this.loading = false;
         return;
       }
       if (this.check != true) {
         this.showErrorModal("Vous n'avez pas validé les Conditions générales")
+        this.loading = false;
         return;
       }
       const extension = "." + this.file.name.split(".").pop();
-      axios.post('http://localhost:5000/cours/add', {
+      axios.post('http://57.129.14.178:5000/cours/add', {
         file: this.file,
         year: this.year,
         matter: this.matter,
@@ -247,17 +234,22 @@ export default {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      }, {
         validateStatus: function (status) {
           return status === 201 || status === 500 || status === 403;
         }
       }).then((res) => {
-            if (res.status == 500 || res.status == 403) {
-              this.showErrorModal(res.data.message);
-              return;
-            }
-          this.animateModal()
+        this.loading = false;
+
+        if (res.status == 500 || res.status == 403) {
+          this.showErrorModal(res.data.message);
+          return;
+        }
+        this.animateModal()
       })
+          .catch((error) => {
+            this.loading = false;
+            this.showErrorModal(error);
+          });
     },
     handleDragOver(event) {
       event.preventDefault();
@@ -346,10 +338,10 @@ export default {
     transform: translateX(-50%);
 
     // Effet Glass Morphism
-    background:  rgba($color: $terciary-white, $alpha: .5); // rgba(35,35,35,0.5)
+    background: rgba($color: $terciary-white, $alpha: .5); // rgba(35,35,35,0.5)
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba($color: $terciary-white, $alpha: .25);  //rgba(35,35,35,0.25)
+    border: 1px solid rgba($color: $terciary-white, $alpha: .25); //rgba(35,35,35,0.25)
 
     // Effet d'ombre
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -360,16 +352,18 @@ export default {
     // Ligne sur le côté
     &:after, &:before {
       position: absolute;
-      content:'';
+      content: '';
       top: .5rem;
       width: 5px;
       background-color: $primary-red;
       transform: skewY(30deg);
     }
+
     &:after {
       left: -.9rem;
       height: 7rem;
     }
+
     &:before {
       left: -1.7rem;
       height: 4.7rem;
@@ -392,7 +386,7 @@ export default {
 
       &:after {
         position: absolute;
-        content:'';
+        content: '';
         top: calc(100% + .5rem);
         left: 0%;
         transform: translateX(-0%);
@@ -413,6 +407,7 @@ export default {
         text-align: center;
         margin-bottom: 2rem;
       }
+
       .btn {
         position: relative;
         left: 50%;
@@ -431,6 +426,7 @@ export default {
           font-weight: 600;
           text-indent: .5rem;
         }
+
         input, select {
           font-size: $p-text;
           color: $primary-black;
@@ -442,6 +438,7 @@ export default {
             color: $secondary-black;
           }
         }
+
         .btn-action {
           display: flex;
           justify-content: space-between;
@@ -466,6 +463,7 @@ export default {
           color: $secondary-black;
           border-radius: $half-round;
         }
+
         .checkbox {
           display: flex;
           align-items: center;
@@ -488,6 +486,7 @@ export default {
                 background-color: $primary-red;
                 transition: .4s;
               }
+
               &:hover::after {
                 width: 50%;
               }
@@ -500,6 +499,7 @@ export default {
               }
             }
           }
+
           input {
             position: relative;
             margin-left: 1.5rem;
@@ -512,7 +512,7 @@ export default {
 
             &::before {
               position: absolute;
-              content:'';
+              content: '';
               top: 0;
               left: 0;
               height: 100%;
@@ -522,9 +522,10 @@ export default {
               border-radius: 4px;
               cursor: pointer;
             }
+
             &::after {
               position: absolute;
-              content:'';
+              content: '';
               top: 50%;
               left: 50%;
               transform: translate(-33%, -33%);
@@ -535,6 +536,7 @@ export default {
               transition: .3s;
               cursor: pointer;
             }
+
             &:checked::after {
               width: 70%;
               height: 70%;
@@ -551,9 +553,6 @@ export default {
         align-self: center;
       }
     }
-
-
-
 
 
   }

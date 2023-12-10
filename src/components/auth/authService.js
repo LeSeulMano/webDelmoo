@@ -2,7 +2,7 @@ import axios from "axios";
 
 function checkAdminPermission() {
     return new Promise((resolve) => {
-        axios.get("http://localhost:5000/admin", {
+        axios.get("http://57.129.14.178:5000/admin", {
             withCredentials: true,
             validateStatus: function (status) {
                 return status === 200 || status === 401;
@@ -13,7 +13,9 @@ function checkAdminPermission() {
             } else{
                 resolve(true);
             }
-        })
+        }).catch(() => {
+            resolve(false);
+        });
     })
 
 }

@@ -77,6 +77,7 @@
 
     <RegisterModal :showModal="showModalResgiter"></RegisterModal>
     <SuccessModal :showModal="showModalLogin"></SuccessModal>
+    <LoadingOverlay :loading="loading" />
   </section>
 </template>
 
@@ -87,11 +88,13 @@ import RegisterModal from "@/components/modal/RegisterModal.vue";
 import ErrorModal from "@/components/modal/ErrorModal.vue";
 import anime from "animejs";
 import SuccessModal from "@/components/modal/SuccessModal.vue";
+import LoadingOverlay from "@/components/modal/WaitingModal.vue";
 
 export default {
   components: {
     ErrorModal, RegisterModal, SuccessModal,
     IonIcon,
+    LoadingOverlay
   },
   data() {
     return {
@@ -103,7 +106,8 @@ export default {
       username: '',
       email: '',
       repeatPassword: '',
-      check: ''
+      check: '',
+      loading: false
     }
   },
   methods: {
@@ -194,15 +198,18 @@ export default {
       this.hide(connexionForm)
     },
     register() {
+      this.loading = true;
       if (!this.email || !this.username || !this.password || !this.repeatPassword) {
+        this.loading = false;
         this.showErrorModal("Des champs sont manquant");
         return;
       }
       if (this.check != true) {
+        this.loading = false;
         this.showErrorModal("Veuillez accepter les cgu");
         return;
       }
-      axios.post("http://localhost:5000/register", {
+      axios.post("http://57.129.14.178:5000/register", {
             password: this.password,
             repeatPassword: this.repeatPassword,
             username: this.username,
@@ -213,6 +220,7 @@ export default {
               return status === 409 || status === 500 || status === 200;
             }
           }).then((res) => {
+            this.loading = false;
         if (res.status == 500 || res.status == 409) {
           this.showErrorModal(res.data.message);
           return;
@@ -222,11 +230,14 @@ export default {
       })
     },
     connexion() {
+      this.loading = true;
       if (!this.password || !this.email) {
         this.showErrorModal("Veuillez spécifié votre mail et votre mot de passe");
+        this.loading = false;
+
         return;
       }
-      axios.post('http://localhost:5000/login',
+      axios.post('http://57.129.14.178:5000/login',
           {
             email: this.email,
             password: this.password
@@ -236,6 +247,8 @@ export default {
               return status === 409 || status === 500 || status === 201;
             }
           }).then((res) => {
+        this.loading = false;
+
         if (res.status == 500 || res.status == 409) {
           this.showErrorModal(res.data.message);
           return;

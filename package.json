@@ -17,6 +17,7 @@
     "sass": "^1.68.0",
     "sass-loader": "^13.3.2",
     "vue": "^3.3.7",
+    "vue-cookies": "^1.8.3",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

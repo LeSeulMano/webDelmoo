@@ -27,7 +27,8 @@
                 <div>2A</div>
               </div>
             </div>
-            <div class="btn btn-cours btn-no-hover pointer" :class="(currentYear == 3 || currentSpe != 0) ? 'btn-school-year-selected' : ''"
+            <div class="btn btn-cours btn-no-hover pointer"
+                 :class="(currentYear == 3 || currentSpe != 0) ? 'btn-school-year-selected' : ''"
                  @click="onYearChange(3)">
               <div>
                 <div>3A</div>
@@ -44,7 +45,7 @@
           </div>
           <div class="subject-courses-select">
             <select>
-              <option v-for="(matter, index) in currentMatterYear" :key="index" :value="matter">{{matter}}</option>
+              <option v-for="(matter, index) in currentMatterYear" :key="index" :value="matter">{{ matter }}</option>
             </select>
           </div>
         </div>
@@ -69,54 +70,34 @@
               </div>
             </div>
             <div v-if="(currentYear === 3 || currentSpe != 0)" class="spe-third">
-              <div class="btn pointer btn-cours" :class="currentSpe == 1 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(4)">
+              <div class="btn pointer btn-cours" :class="currentSpe == 1 ? 'btn-filter-cm-selecter' : ''"
+                   @click="onYearChange(4)">
                 <div>
                   <div>ME</div>
                 </div>
               </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 2 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(5)">
+              <div class="btn pointer btn-cours" :class="currentSpe == 2 ? 'btn-filter-cm-selecter' : ''"
+                   @click="onYearChange(5)">
                 <div>
                   <div>MT</div>
                 </div>
               </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 3 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(6)">
+              <div class="btn pointer btn-cours" :class="currentSpe == 3 ? 'btn-filter-cm-selecter' : ''"
+                   @click="onYearChange(6)">
                 <div>
                   <div>IIA</div>
                 </div>
               </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 4 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(7)">
-                <div>
-                  <div>GEII</div>
-                </div>
-              </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 5 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(8)">
+              <div class="btn pointer btn-cours" :class="currentSpe == 4 ? 'btn-filter-cm-selecter' : ''"
+                   @click="onYearChange(7)">
                 <div>
                   <div>GCB</div>
                 </div>
               </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 6 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(9)">
-                <div>
-                  <div>ICY</div>
-                </div>
-              </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 7 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(10)">
+              <div class="btn pointer btn-cours" :class="currentSpe == 5 ? 'btn-filter-cm-selecter' : ''"
+                   @click="onYearChange(8)">
                 <div>
                   <div>GI</div>
-                </div>
-              </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 8 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(11)">
-                <div>
-                  <div>GM</div>
-                </div>
-              </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 9 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(12)">
-                <div>
-                  <div>ESE</div>
-                </div>
-              </div>
-              <div class="btn pointer btn-cours" :class="currentSpe == 10 ? 'btn-filter-cm-selecter' : ''" @click="onYearChange(13)">
-                <div>
-                  <div>Info</div>
                 </div>
               </div>
             </div>
@@ -126,13 +107,8 @@
               <option value="ME">ME</option>
               <option value="MT">MT</option>
               <option value="IIA">IIA</option>
-              <option value="GEII">GEII</option>
               <option value="GCB">GCB</option>
-              <option value="ICY">ICY</option>
               <option value="GI">GI</option>
-              <option value="GM">GM</option>
-              <option value="ESE">ESE</option>
-              <option value="Info">Info</option>
             </select>
           </div>
           <div class="files">
@@ -163,26 +139,22 @@ export default ({
     ErrorModal
   },
   data() {
-    const first = ["analyse", "algèbre", "outil mathématique", "algo", "électrostatique", "électrocinétique", "mécanique", "thermodynamique", "chimie des matériaux", "proba", "magnétostatique", "optique géométrique", "automatique"];
-    const second = ["analyse", "algèbre", "algo", "base de donnée", "architecture", "électromagnétisme", "physique des ondes", "optique ondulatoire", "automatique", "calcul formel", "thermodynamique", "analyse numérique", "programmation orientée objet", "génie logiciel"];
+    const first = ["Analyse", "Algèbre", "OMP", "Algo", "Electrostat", "Electrocin", "Mécanique", "Thermo", "CDM", "Proba", "Magnétostatique", "Optique", "Auto"];
+    const second = ["Analyse", "Algèbre", "Algo", "BDR", "Architecture", "Electromag", "PDO", "OptiqueOndulatoire", "Auto", "ANUM", "Thermo", "CalculFormel", "POO", "GL"];
     const mt = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const ese =["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const iia = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const geii = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const gm = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const info = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const icy = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const gi = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const gcb = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
-    const me = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Mécanique", "Procédé", "Modélisation"];
+    const iia = ["Méca","MPES","Electrotechnique","Signaux","AnalyseSys","CalculEmbarqué"]
+    const gi = ["TDS", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "RDM", "Proba", "Procédé", "Modélisation", "Maintenance"];
+    const gcb = ["Plan", "CAO", "GrosOeuvre", "SecondOeuvre", "Economie", "Architecture", "MecaniqueSol", "RDM"];
+    const me = ["AA", "RDM", "Fab", "Capteurs", "Electrotech", "Mecaflu", "TSM", "Conception", "Meca", "Proba", "Thermo", "MMC", "ANUM", "Energétique"];
+
 
     let currentYear = 1;
     let currentSpe = 0;
     let currentType = 1;
-    let currentMatter = currentYear == 1 ? first[0] : currentYear == 2 ? second[0] : currentSpe == 1 ? me[0] : currentSpe == 2 ? mt[0] : currentSpe == 3 ? iia[0] : currentSpe == 4 ? geii[0] : currentSpe == 5 ? gcb[0] : currentSpe == 6 ? icy[0] : currentSpe == 7 ? gi[0] : currentSpe == 8 ? gm[0] : currentSpe == 9 ? ese[0] : currentSpe == 10 ? info[0] : first[0];
+    let currentMatter = currentYear == 1 ? first[0] : currentYear == 2 ? second[0] : currentSpe == 1 ? me[0] : currentSpe == 2 ? mt[0] : currentSpe == 3 ? iia[0] : currentSpe == 4 ? gcb[0] : currentSpe == 5 ? gi[0] : first[0];
     let search = '';
     let cours = [];
-    const link = 'http://localhost:5000';
+    const link = 'http://57.129.14.178:5000';
     return {
       errorModalVisible: false,
       errorMessage: "",
@@ -198,14 +170,9 @@ export default ({
       currentSpe,
       mt,
       me,
-      ese,
-      geii,
       iia,
       gcb,
-      gm,
-      icy,
       gi,
-      info
     }
   },
 
@@ -239,27 +206,25 @@ export default ({
       document.querySelectorAll(".btn-subject-selected")[0].classList.remove("btn-subject-selected");
       event.currentTarget.classList.add('btn-subject-selected');
       this.currentMatter = event.currentTarget.lastChild.innerText;
-      this.currentSpe = 1;
     },
     onYearChange(year) {
       document.querySelectorAll(".btn-subject-selected")[0].classList.remove("btn-subject-selected");
       document.querySelectorAll(".pointer")[3].classList.add("btn-subject-selected");
-      this.currentMatter = year == 1 ? this.first[0] : year == 2 ? this.second[0] : year == 3 ? this.me[0] : year == 4 ? this.me[0] : year == 5 ? this.mt[0] : year == 6 ? this.iia[0] : year == 7 ? this.geii[0] : year == 8 ? this.gcb[0] : year == 9 ? this.icy[0] : year == 10 ? this.gi[0] : year == 11 ? this.gm[0] : year == 12 ? this.ese[0] : year == 13 ? this.info[0] : this.first[0];
-
+      this.currentMatter = year == 1 ? this.first[0] : year == 2 ? this.second[0] : year == 3 ? this.me[0] : year == 4 ? this.me[0] : year == 5 ? this.mt[0] : year == 6 ? this.iia[0] : year == 7 ? this.gcb[0] : year == 8 ? this.gi[0] : this.first[0];
 
 
       if (year == 3) {
         this.currentSpe = 1;
         this.currentYear = 3;
       }
-      if(year != 1 && year != 2 && year != 3){
+      if (year != 1 && year != 2 && year != 3) {
         this.currentSpe = year - 3;
       }
-      if(year == 1 || year == 2){
+      if (year == 1 || year == 2) {
         this.currentSpe = 0;
         this.currentYear = year;
       }
-      this.currentMatterYear = year == 1 ? this.first : year == 2 ? this.second : year == 3 ? this.me : year == 4 ? this.me : year == 5 ? this.mt : year == 6 ? this.iia : year == 7 ? this.geii : year == 8 ? this.gcb : year == 9 ? this.icy : year == 10 ? this.gi : year == 11 ? this.gm : year == 12 ? this.ese : year == 13 ? this.info : this.first;
+      this.currentMatterYear = year == 1 ? this.first : year == 2 ? this.second : year == 3 ? this.me : year == 4 ? this.me : year == 5 ? this.mt : year == 6 ? this.iia : year == 7 ? this.gcb : year == 8 ? this.gi : this.first;
     }
   },
 
@@ -346,7 +311,6 @@ export default ({
           return;
         }
         this.cours = res.data.json;
-        console.log(this.cours)
       })
     } else {
       if (!isYear) {
@@ -500,7 +464,7 @@ export default ({
         width: 16rem;
         margin-right: 5rem;
 
-        .subject-courses-select{
+        .subject-courses-select {
           display: none;
         }
 
@@ -585,7 +549,7 @@ export default ({
         position: relative;
         width: 100%;
 
-        .subject-spe-select{
+        .subject-spe-select {
           display: none;
         }
 
@@ -831,7 +795,7 @@ export default ({
           position: relative;
           width: 100%;
 
-          .subject-spe-select{
+          .subject-spe-select {
             display: block;
             position: relative;
 

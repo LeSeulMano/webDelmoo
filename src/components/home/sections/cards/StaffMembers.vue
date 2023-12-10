@@ -1,6 +1,6 @@
 <template>
   <div class="team-member" data-aos="fade-down" data-aos-duration="600">
-    <div class="team-member-img"><img :src="getImageUrl()"></div>
+    <div class="team-member-img"><img id="image-staff" :src="url != 'team4' ? getImageUrl() : ''"></div>
     <h3>{{ name }}</h3>
     <h4>{{ role }}</h4>
   </div>
@@ -13,7 +13,6 @@ export default {
     role: String,
     name: String,
     url: String
-
   },
   methods: {
     getImageUrl() {
@@ -40,7 +39,7 @@ export default {
     position: relative;
     border-radius: $half-round;
     width: 20%;
-    max-width: 250px;
+    max-width: 200px;
     padding: 2rem 0;
 
     // Effet Glass Morphism

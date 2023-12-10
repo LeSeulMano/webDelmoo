@@ -58,10 +58,8 @@ export default {
 @import "src/utils/computer/components.scss";
 
 #sect9 {
-  overflow-y: hidden;
   padding: 0;
-
-
+  overflow: hidden;
   &:before {
     position: absolute;
     content: "";
