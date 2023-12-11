@@ -5,8 +5,8 @@
       <div class="team-members">
         <StaffMembers url="Yacine.png" name="Yacine" role="Président"></StaffMembers>
         <StaffMembers url="Marin.png" name="Marin" role="Vice Président"></StaffMembers>
-        <StaffMembers url="Nathan.png" name="Nathan" role="Trésoriere"></StaffMembers>
-        <StaffMembers url="team4" name="Gaby" role="Secrétaire"></StaffMembers>
+        <StaffMembers url="Nathan.png" name="Nathan" role="Trésorier"></StaffMembers>
+        <StaffMembers url="Gaby.png" name="Gaby" role="Secrétaire"></StaffMembers>
         <StaffMembers url="Noa.png" name="Noa" role="Co-Secrétaire"></StaffMembers>
       </div>
       <div class="team-cta">
