@@ -204,6 +204,12 @@ export default {
       this.errorModalVisible = value;
     },
     validate() {
+      let promo = '';
+      if (this.promotion == "3A"){
+        promo = this.specialities;
+      }else {
+        promo = this.promotion;
+      }
       this.loading = true;
       if (this.matter.length <= 0 || this.teacher <= 0 || this.file == null) {
         this.showErrorModal("Champ manquant !")
@@ -221,12 +227,13 @@ export default {
         return;
       }
       const extension = "." + this.file.name.split(".").pop();
+
       axios.post('http://57.129.14.178:5000/cours/add', {
         file: this.file,
         year: this.year,
         matter: this.matter,
         teacher: this.teacher,
-        promotion: this.promotion,
+        promotion: promo,
         type: this.type,
         name: this.file.name.slice(0, -extension.length)
       }, {
