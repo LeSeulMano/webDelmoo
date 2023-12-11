@@ -51,7 +51,7 @@
               <select name="type" v-model="type">
                 <option value="CM" selected>CM</option>
                 <option value="TD">TD</option>
-                <option value="TP">TP</option>
+                <option value="Fiche">Fiche</option>
               </select>
             </div>
             <div>
