@@ -2,7 +2,7 @@ import axios from "axios";
 
 function checkAdminPermission() {
     return new Promise((resolve) => {
-        axios.get("http://delmoo.fr:5000/admin", {
+        axios.get("https://delmoo.fr:5000/admin", {
             withCredentials: true,
             validateStatus: function (status) {
                 return status === 200 || status === 401;

@@ -85,10 +85,10 @@ export default {
       }
     },
     getFileURL(coursPath) {
-      return `http://delmoo.fr:5000/cours/open?file=${coursPath}`;
+      return `https://delmoo.fr:5000/cours/open?file=${coursPath}`;
     },
     valide(name, teacher, promotion, type, matter, year, author, id) {
-      axios.post(`http://delmoo.fr:5000/cours/valide`, {
+      axios.post(`https://delmoo.fr:5000/cours/valide`, {
             name: name,
             teacher: teacher,
             promotion: promotion,
@@ -108,7 +108,7 @@ export default {
     const screenHeight = window.innerHeight;
     document.querySelector('#sect8').style.height = screenHeight + "px";
 
-    axios.get("http://delmoo.fr:5000/admin/cours").then((res) => {
+    axios.get("https://delmoo.fr:5000/admin/cours").then((res) => {
       this.coursData = res.data.json;
     })
 
