@@ -228,7 +228,7 @@ export default {
       }
       const extension = "." + this.file.name.split(".").pop();
 
-      axios.post('https://delmoo.fr:5000/cours/add', {
+      axios.post('http://delmoo.fr:5000/cours/add', {
         file: this.file,
         year: this.year,
         matter: this.matter,
