@@ -58,7 +58,7 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
-    axios.get("http://57.129.14.178:5000/connect", {
+    axios.get("https://57.129.14.178:5000/connect", {
       withCredentials: true,
       validateStatus: function (status) {
         return status === 401 || status === 200;
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     logout(){
-      axios.get('http://57.129.14.178:5000/logout', {
+      axios.get('https://57.129.14.178:5000/logout', {
         withCredentials: true
       }).then(() => {
         window.location.reload();
