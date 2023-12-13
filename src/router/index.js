@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import Home from '../pages/HomePage.vue';
 import Cours from '../pages/CoursPage.vue';
 import ResultCours from "../pages/result/ResultCoursPage.vue";
@@ -32,7 +32,7 @@ const routes = [
         name: "Login",
         path: "/login",
         component: LoginPage,
-        meta: { requiresAuth: true, redirectIfLoggedIn: true }
+        meta: {requiresAuth: false}
     },
     {
         name: "Adding",
@@ -48,7 +48,7 @@ const routes = [
         name: "Admin",
         path: "/admin",
         component: AdminPage,
-        meta: { requiresAuth: true, requiresAdmin: true, redirectIfNotAdmin: true }
+        meta: {requiresAuth: true, requiresAdmin: true}
     },
     {
         name: "Podcast",
@@ -64,7 +64,7 @@ const routes = [
         name: "Account",
         path: "/account",
         component: AccountPage,
-        meta: { requiresAuth: true, redirectIfLoggedIn: true }
+        meta: {requiresAuth: true, requiresAdmin: false}
     }
 ];
 
@@ -76,29 +76,17 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
     const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
-    const redirectIfLoggedIn = to.matched.some(record => record.meta.redirectIfLoggedIn);
-    const redirectIfNotAdmin = to.matched.some(record => record.meta.redirectIfNotAdmin);
     const isLoggedIn = document.cookie.includes('token=');
 
-    if (requiresAuth || requiresAdmin) {
-        checkAdminPermission().then((isAdmin) => {
-            if (requiresAuth && isLoggedIn && redirectIfLoggedIn) {
-                next();  // Rediriger vers /cgu si déjà connecté
-            } else if (requiresAuth && !isLoggedIn && redirectIfNotAdmin) {
-                next('/login');  // Permettre l'accès à /login si non connecté
-            } else if (requiresAuth && !isLoggedIn){
-                next();
-            } else if (requiresAdmin && !isAdmin && redirectIfNotAdmin) {
-                next('/account');  // Rediriger vers /shop si non admin
-            } else if (requiresAdmin && isAdmin) {
-                next();  // Permettre l'accès à /admin si admin
-            } else {
-                next();
-            }
-        });
-    } else {
-        next();
-    }
+    checkAdminPermission().then((isAdmin) => {
+        if (requiresAuth && !isLoggedIn) {
+            next('/login');
+        } else if (requiresAdmin && !isAdmin) {
+            next('/account');
+        } else {
+            next();
+        }
+    });
 });
 
 export default router;
