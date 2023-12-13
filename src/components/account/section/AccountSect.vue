@@ -54,7 +54,7 @@ export default {
     const screenHeight = window.innerHeight;
     document.querySelector('#sect11').style.height = screenHeight + "px";
 
-    axios.get("https://57.129.14.178:5000/current-user", {
+    axios.get("http://57.129.14.178:5000/current-user", {
       withCredentials: true,
       validateStatus: function (status) {
         return status === 201 || status === 500;

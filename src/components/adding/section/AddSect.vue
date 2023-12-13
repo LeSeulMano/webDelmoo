@@ -221,7 +221,7 @@ export default {
         return;
       }
       const extension = "." + this.file.name.split(".").pop();
-      axios.post('https://57.129.14.178:5000/cours/add', {
+      axios.post('http://57.129.14.178:5000/cours/add', {
         file: this.file,
         year: this.year,
         matter: this.matter,

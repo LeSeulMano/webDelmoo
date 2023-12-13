@@ -209,7 +209,7 @@ export default {
         this.showErrorModal("Veuillez accepter les cgu");
         return;
       }
-      axios.post("https://57.129.14.178:5000/register", {
+      axios.post("http://57.129.14.178:5000/register", {
             password: this.password,
             repeatPassword: this.repeatPassword,
             username: this.username,
@@ -237,7 +237,7 @@ export default {
 
         return;
       }
-      axios.post('https://57.129.14.178:5000/login',
+      axios.post('http://57.129.14.178:5000/login',
           {
             email: this.email,
             password: this.password
