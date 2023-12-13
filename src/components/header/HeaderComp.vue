@@ -58,7 +58,7 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
-    axios.get("http://57.129.14.178:5000/connect", {
+    axios.get("http://localhost:5000/connect", {
       withCredentials: true,
       validateStatus: function (status) {
         return status === 401 || status === 200;

@@ -237,7 +237,7 @@ export default {
 
         return;
       }
-      axios.post('http://57.129.14.178:5000/login',
+      axios.post('http://localhost:5000/login',
           {
             email: this.email,
             password: this.password
