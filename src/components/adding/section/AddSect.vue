@@ -235,7 +235,7 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
         validateStatus: function (status) {
-          return status === 201 || status === 500 || status === 403;
+          return status === 200 || status === 500 || status === 403;
         }
       }).then((res) => {
         this.loading = false;
