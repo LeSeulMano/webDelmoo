@@ -1,11 +1,11 @@
 <template>
   <div class="cookie-content" v-if="!accepted">
-      <h2>Nous nous soucions de votre vie privé</h2>
-      <p>Nous utilisons des cookies sur notre site pour facilité votre expérience, pour cela il faut les accepter. Comme de toute facon personne ne lit
-      ce genre de message je peux vous dire que c'est cookie sont la pour faire des stats et les stats c'est fun ! Tous le monde clique sur refusé a chaque fois
-      parce que askip les cookies c'est mal, mais bon nous on a rien comme cookie donc si tu lit ce message accept stp. Si tu veux voir notre politique de confidentialité
+      <h2>Nous nous soucions de votre vie privée</h2>
+      <p>Nous utilisons des cookies sur notre site pour faciliter votre expérience, pour cela il faut les accepter. Comme de toute facon personne ne lit
+      ce genre de message je peux vous dire que ces cookies sont là pour faire des stats et les stats c'est fun ! Tous le monde clique sur refusé à chaque fois
+      parce que askip les cookies c'est mal, mais bon nous on a rien comme cookie donc si tu lis ce message accepte stp. Si tu veux voir notre politique de confidentialité
         clique
-      la dessus, de toute facon tu liras pas mais bon on est obligé...</p>
+      là dessus, de toute facon tu liras pas mais bon on est obligé...</p>
     <div class="btn-action">
       <div class="btn pointer btn-primary btn-icon" @click="acceptCookies">
         <div>
