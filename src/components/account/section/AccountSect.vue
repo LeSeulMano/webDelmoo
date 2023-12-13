@@ -2,7 +2,7 @@
   <section id="sect11">
     <div class="user-group">
       <h2>{{ information.username }} : </h2>
-      <h2 v-if="information.is_checked == 1" class="warning">Attention vous n'avez pas vérifié votre adresse mail uphf !</h2>
+      <h2 v-if="information.is_checked == 0" class="warning">Attention vous n'avez pas vérifié votre adresse mail uphf !</h2>
       <div class="user-information">
         <h3>Adresse mail: </h3>
         <p>{{ information.email }}</p>
