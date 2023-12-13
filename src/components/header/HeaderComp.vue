@@ -30,7 +30,7 @@
     <div class="account">
       <router-link to="/login" class="account-icon router-link not-connected login" data-tooltip="Connexion"><IonIcon name="person"></IonIcon></router-link>
       <div class="account-icon connected logout" @click="logout" data-tooltip="Déconnexion"><IonIcon name="log-out"></IonIcon></div>
-      <router-link to="/admin" class="router-link connected account-icon compte" data-tooltip="Compte"><IonIcon name="document"></IonIcon></router-link>
+      <router-link to="/account" class="router-link connected account-icon compte" data-tooltip="Compte"><IonIcon name="document"></IonIcon></router-link>
     </div>
   </header>
 
