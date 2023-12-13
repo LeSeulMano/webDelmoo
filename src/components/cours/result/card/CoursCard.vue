@@ -48,7 +48,7 @@ export default ({
       return `https://delmoo.fr:5000/cours/open?file=${path}`;
     },
     downloadFile(coursPath) {
-      axios.post('https://delmoo.fr:5000/cours/download', {
+      axios.post('https://localhost:5000/cours/download', {
         filePath: coursPath
       }, {
         validateStatus: function (status) {
