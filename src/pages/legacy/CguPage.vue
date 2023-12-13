@@ -3,10 +3,53 @@
   <main>
     <section id="sect6">
       <div class="condition-general">
-        <h6>Conditions générales d'utilisation</h6>
-        <p>
-          <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolores dolorum itaque magnam nemo quae, quidem soluta velit! Debitis, dolore facere incidunt iste nostrum qui ratione suscipit totam voluptatem voluptates!</span><span>Aut error minus perferendis? Ab aperiam corporis ea fugit itaque, nihil rerum vitae? Amet autem doloribus earum error, laudantium nam neque quas. Adipisci expedita hic molestiae quis repellendus saepe sit?</span><span>Aut harum nihil quibusdam quidem ut voluptas? Amet consequuntur delectus expedita inventore iste neque nulla quam quas sunt voluptatem! Aliquam debitis dolorem ea eum eveniet excepturi exercitationem explicabo, incidunt optio!</span><span>Ab alias aliquam cupiditate distinctio dolore et facere impedit incidunt inventore ipsam iusto libero maiores nihil nostrum, odit perspiciatis qui ratione repellat repellendus repudiandae sunt tempora tempore totam vel veniam?</span><span>Amet animi architecto asperiores autem consequatur cum debitis dicta doloremque dolores earum error excepturi incidunt ipsa laboriosam magni necessitatibus nemo omnis optio, quam qui quidem rerum tempora veritatis vero voluptate.</span><span>Ab ad aliquam, aperiam aspernatur consectetur cum, doloribus dolorum eaque expedita facere fugiat ipsa maxime, necessitatibus nesciunt nobis nostrum odio optio quas quasi quos recusandae reprehenderit saepe sint totam ut.</span><span>Ab blanditiis distinctio eaque eum expedita, facilis harum illum inventore ipsa itaque iusto laborum, libero minima molestias nisi nulla officiis perferendis placeat quis recusandae, sed soluta ullam unde veniam voluptatibus!</span><span>Amet debitis impedit quaerat quos repudiandae! Corporis enim perferendis recusandae repellat tempore. Blanditiis, est ex explicabo hic ipsum modi nihil nisi rerum velit vero. Blanditiis ea explicabo minima quod soluta!</span><span>Alias, aliquam aliquid aspernatur autem deleniti dolor dolore ea earum, est et ex impedit ipsa laudantium molestiae nisi perferendis quidem rem saepe sit tempora totam unde ut vel voluptas voluptatibus!</span><span>Cum cupiditate, doloremque, eaque esse fugiat in laboriosam modi quas qui repudiandae sequi, sunt voluptas? A amet doloremque laborum molestias mollitia natus nisi quae quos repellendus? Architecto magnam molestias quod!</span><span>Ad esse explicabo, harum illum necessitatibus possimus temporibus totam vitae voluptatibus! Aliquid cum dicta earum ex explicabo inventore iusto nam, obcaecati omnis, qui quos veniam? Eius modi mollitia numquam vitae?</span><span>Accusantium amet atque consequatur corporis dolor dolore doloremque, dolores eius error et eum excepturi, in, inventore ipsa laborum libero magnam minus molestiae molestias mollitia officia rem rerum sint tempora temporibus!</span><span>Culpa delectus distinctio dolorum ducimus eveniet laborum libero minima quidem sed veritatis! Id, nisi velit. Consectetur doloribus facere fugit nesciunt, numquam officia suscipit unde! Consequuntur deleniti distinctio suscipit veritatis voluptas.</span><span>Asperiores assumenda consequatur deserunt, dolorum ducimus eligendi error, ex in inventore, maiores officiis repellat rerum similique veniam vero? Aliquam assumenda beatae dolorem est fugiat illum in maiores repellat rerum totam.</span><span>Asperiores commodi debitis natus nostrum, quam recusandae sed suscipit veniam voluptates voluptatum. Consectetur eligendi fuga id maiores, maxime non quia voluptatem voluptatum. Cumque impedit numquam recusandae temporibus? Amet iusto, minima.</span><span>At delectus est incidunt maxime possimus repellendus sit! Cum deserunt dolor dolores eos eveniet ex, fugit illum in labore minima omnis perferendis porro quia quibusdam quod recusandae similique vero, voluptas!</span><span>Aut facilis iste iure unde vel. Accusamus blanditiis, consectetur doloribus illum ipsum libero maiores! Ab asperiores assumenda cupiditate laborum nihil nisi obcaecati recusandae sed sequi, suscipit veniam veritatis vitae voluptates?</span><span>Amet, commodi cumque iure nemo nulla provident ullam! Aliquam beatae debitis dicta doloribus ea eos iure maiores perferendis perspiciatis, quas quasi similique suscipit. Aliquam aspernatur ipsum, magni officia tempore ullam.</span><span>Accusantium aliquid architecto aut autem, consequatur distinctio dolorum eos eveniet explicabo facere fugiat harum in inventore laborum maxime qui saepe sunt suscipit tempora temporibus ut vel vero voluptas voluptate voluptatum?</span><span>Animi beatae consequuntur debitis dolorum ducimus earum iusto nemo, obcaecati placeat quam quia quidem, sequi suscipit ullam ut? Asperiores atque aut doloremque eos esse itaque nisi obcaecati reprehenderit totam ut.</span><span>Amet asperiores commodi cumque, debitis, deserunt dicta exercitationem id impedit ipsam modi non obcaecati, perferendis recusandae? Adipisci, at, cum fugit id illo in libero molestiae non quia quidem voluptas voluptatem.</span><span>A architecto aut commodi culpa, delectus ex fugiat illo ipsa nostrum quidem sapiente sit suscipit vel voluptates voluptatum. Asperiores iste natus optio placeat, quasi quis quod tempore? Distinctio ea, quam!</span><span>Ad doloremque earum est nisi nulla obcaecati quo. Consectetur cupiditate doloremque doloribus eaque, eum excepturi libero nemo nostrum praesentium quo, soluta veniam voluptatibus. Dolore fuga nostrum quo sint ut voluptatibus.</span><span>Ad alias aperiam culpa dolorem doloremque ducimus, eaque eligendi, esse fugit impedit itaque magnam minus mollitia nostrum officiis omnis placeat, praesentium quia quod reiciendis rerum unde velit voluptatum! Cupiditate, nostrum!</span><span>Adipisci assumenda atque dicta dolores dolorum et explicabo illum iste libero nam, nisi quaerat quia quis quod quos totam voluptas. Amet asperiores eum facilis harum illum nemo odio sequi tempore.</span><span>Adipisci animi debitis dicta eveniet id incidunt ipsa officiis perferendis rerum totam? Corporis cumque, ea illo impedit, inventore natus nostrum omnis rem sit sunt ullam vitae voluptate voluptatibus! Commodi, perferendis!</span><span>Debitis facilis iusto officiis repellat veritatis. Aspernatur culpa eaque facere ipsa ipsam itaque nemo nobis nostrum, pariatur quaerat quia quidem quo repellat sit veniam veritatis voluptates? Hic laboriosam officia vel?</span><span>Commodi debitis iste minus neque optio placeat soluta ullam unde, ut vitae. Architecto aspernatur dolorem doloremque eos, harum illo, laborum laudantium odio pariatur porro quam recusandae similique tenetur totam veritatis.</span><span>Aliquid aspernatur aut blanditiis consequatur deleniti distinctio, ducimus eligendi harum hic ipsa mollitia obcaecati porro, possimus quas quisquam quod soluta! Dignissimos ipsam libero nam odit quae quo, tenetur? Quos, veritatis.</span><span>Atque culpa dolorum eius excepturi explicabo labore laboriosam maxime obcaecati odio, odit, provident quasi quisquam sed ullam, unde! Atque eaque, officia! Consectetur eaque, illo iusto molestias quasi repellendus saepe. Harum.</span>
-        </p>
+        <h3>Conditions générales d'utilisation</h3>
+        <div class="content">
+          <p> En utilisant ce site web, vous acceptez les conditions suivantes. Veuillez les lire attentivement avant de
+            poursuivre. </p>
+          <h6> 1. Acceptation des termes </h6>
+          <p>En cochant la case d’acceptation des conditions d’utilisation générales du site web “delmoo.fr” au moment
+            de la création de votre compte, vous acceptez de vous conformer à ces mêmes conditions générales
+            d'utilisation, et à toutes les lois et réglementations applicables. Si vous n’acceptez pas ces conditions
+            d’utilisation, veuillez ne pas utiliser le site.</p>
+          <h6>2. Utilisation du site</h6>
+          <p>Vous acceptez d’utiliser ce site uniquement à des fins légales et conformément à ces conditions. Vous vous
+            engagez à ne pas utiliser le site de manière à enfreindre les droits d’autrui, à nuire à d’autres
+            utilisateurs ou à compromettre la sécurité du site.
+          </p>
+          <h6>3. Création du compte</h6>
+          <p>Certaines fonctionnalités du site peuvent nécessiter la création d'un compte. Vous êtes responsable de
+            maintenir la confidentialité de vos informations de compte et de toutes les activités qui se produisent sous
+            votre compte.</p>
+          <h6>4. Propriété Intellectuelle</h6>
+          <p>Tous les contenus présents sur ce site, y compris les textes, images, logos, sont la propriété de DELMOO et
+            sont protégés par les lois sur la propriété intellectuelle. Vous ne pouvez pas reproduire, distribuer ou
+            utiliser ces contenus sans notre autorisation écrite.</p>
+          <h6> 5. Comportement de l’utilisateur</h6>
+          <p>En utilisant ce site, vous acceptez de vous abstenir de tout comportement qui pourrait porter atteinte à
+            d'autres utilisateurs, nuire au bon fonctionnement du site ou enfreindre les lois en vigueur. Il est
+            interdit de diffuser des contenus illégaux, offensants, diffamatoires, ou de s'engager dans des activités
+            perturbatrices. Nous nous réservons le droit de prendre des mesures, y compris la résiliation du compte, en
+            cas de violation de cette disposition.
+          </p>
+          <h6>6. Résiliation du compte
+          </h6>
+          <p>Nous nous réservons le droit de résilier votre compte et de refuser l'accès au site pour quelque raison que
+            ce soit, y compris, sans limitation, si nous estimons que vous avez enfreint ces Conditions d'Utilisation.
+            La résiliation peut se faire sans préavis. Vous pouvez également résilier votre compte à tout moment en en
+            faisant la demande à notre adresse mail suivante : delmoo.pro@gmail.com</p>
+          <h6>7. Modifications des conditions</h6>
+          <p>Nous nous réservons le droit de modifier unilatéralement ces Conditions Générales d'Utilisation à tout
+            moment. Les modifications prendront effet dès leur publication sur le site, et il vous incombe de consulter
+            régulièrement les conditions mises à jour. En continuant à utiliser le site après la publication des
+            modifications, vous acceptez les nouvelles conditions.
+          </p>
+          <br>
+          <p>Merci de votre compréhension et de votre collaboration !<br>L’équipe DELMOO
+          </p>
+          <br>
+          <span>Date de la dernière mise à jour : 11/12/2023</span>
+        </div>
       </div>
     </section>
   </main>
@@ -14,6 +57,7 @@
 
 <script>
 import headerComp from "@/components/header/HeaderComp.vue";
+
 export default ({
   components: {headerComp},
   mounted() {
@@ -25,13 +69,15 @@ export default ({
 
 <style lang="scss">
 @import "../../utils/computer/variables.scss";
-main{
+
+main {
   position: relative;
 
   #sect6 {
     position: relative;
     overflow: hidden;
     padding: 0px;
+    display: flex;
 
     &::before {
       position: absolute;
@@ -49,19 +95,53 @@ main{
     .condition-general {
       position: absolute;
       left: 50%;
-      top: 40%;
-      transform: translate(-50%, -48%);
-      width: 80%;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-
+      top: 20%;
+      transform: translateX(-50%);
+      overflow-y: scroll;
       max-height: 40rem;
-      overflow: scroll;
+      // Effet Glass Morphism
+      background: rgba($color: $terciary-white, $alpha: .5); // rgba(35,35,35,0.5)
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba($color: $terciary-white, $alpha: .25); //rgba(35,35,35,0.25)
 
-      h6{
+      // Effet d'ombre
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+      border-radius: $half-round;
+      padding: 2.2rem 3rem 2rem 3rem;
+
+      // Ligne sur le côté
+      &:after, &:before {
+        position: absolute;
+        content: '';
+        top: .5rem;
+        width: 5px;
+        background-color: $primary-red;
+        transform: skewY(30deg);
+      }
+
+      &:after {
+        left: -.9rem;
+        height: 7rem;
+      }
+
+      &:before {
+        left: -1.7rem;
+        height: 4.7rem;
+      }
+
+      .content {
+        h6 {
+          margin-top: 2rem;
+          font-size: $h6-text;
+        }
+      }
+
+      h3 {
+        text-align: center;
+        margin: 0;
+        margin-bottom: 2.5rem;
         font-size: $h3-text;
       }
     }
@@ -69,7 +149,21 @@ main{
 }
 
 @media only screen and (max-width: 1024px) {
-  main {}
+  $h6-text: 1.2rem;
+  $h3-text: 3.8rem;
+  $h5-text: 2.4rem;
+  $h4-text: 2.9rem;
+  main {
+    #sect6 {
+      .condition-general {
+        max-height: 30rem;
+
+        h3 {
+          font-size: $h4-text;
+        }
+      }
+    }
+  }
 }
 
 </style>
