@@ -38,7 +38,7 @@
           <div class="subject-courses-btn">
             <div class="btn btn-primary pointer btn-no-hover" v-for="(matter, index) in currentMatterYear" :key="index"
                  @click="onMatterChange($event)">
-              <div>
+              <div class="matter" :data-tooltip="currentMatterYearTooltip[index]">
                 <div>{{ matter }}</div>
               </div>
             </div>
@@ -147,6 +147,14 @@ export default ({
     const gcb = ["Plan", "CAO", "GrosOeuvre", "SecondOeuvre", "Economie", "Architecture", "MecaniqueSol", "RDM"];
     const me = ["AA", "RDM", "Fab", "Capteurs", "Electrotech", "Mecaflu", "TSM", "Conception", "Meca", "Proba", "Thermo", "MMC", "ANUM", "Energétique"];
 
+    const firstTooltip = ["Analyse", "Algèbre", "Outil Mathématique", "Algo", "Electrostatique", "Electrocinétique", "Mécanique", "Thermodynamique", "Chimie Des Matériaux", "Probabilité", "Magnétostatique", "Optique Géométrique", "Automatique"];
+    const secondTooltip = ["Analyse", "Algèbre", "Algo", "Base de Donnée Relationnelle", "Architecture", "Electromagnétisme", "Physique des Ones", "Optique Ondulatoire", "Automatique", "Analyse Numérique", "Thermodynamique", "Calcul Formel", "Programmation Orienté Objet", "Génie Logiciel"];
+    const mtTooltip = ["Traitement de Signal", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "Résistance des Matériaux", "Mécanique", "Procédé de Fabrication", "Modélisation"];
+    const iiaTooltip = ["Mécanique","Méthode pilotage systèmes discrets","Electrotechnique","Signaux","Analyse Sytèmes","CalculEmbarqué"]
+    const giTootlip = ["Traitement de Signal", "C/python", "Electronique", "Electrotechnique", "Automatique", "Analyse", "Résistance des Matériaux", "Probabilité", "Procédé de Fabrication", "Modélisation", "Maintenance"];
+    const gcbTooltip = ["Plan", "CAO", "GrosOeuvre", "SecondOeuvre", "Economie de la Maitrise de l'oeuvre", "Architecture", "Mecanique des Sols", "Résistance des Matériaux"];
+    const meTooltip = ["Analyse Appliqué", "Résistance des Matériaux", "Procédé de Fabrication", "Capteurs pour la mécanique", "Electrotechnique", "Mécanique des fluides", "Traitement de signal en Mécanique", "Conception", "Mecanique", "Probabilité", "Thermodynamique", "Mécanique des milieu continus", "Analyse Numérique", "Energétique"];
+
 
     let currentYear = 1;
     let currentSpe = 0;
@@ -156,9 +164,17 @@ export default ({
     let cours = [];
     const link = 'https://delmoo.fr:5000';
     return {
+      firstTooltip,
+      secondTooltip,
+      meTooltip,
+      mtTooltip,
+      iiaTooltip,
+      gcbTooltip,
+      giTootlip,
       errorModalVisible: false,
       errorMessage: "",
       currentMatterYear: first,
+      currentMatterYearTooltip: firstTooltip,
       first,
       second,
       currentYear,
@@ -225,6 +241,8 @@ export default ({
         this.currentYear = year;
       }
       this.currentMatterYear = year == 1 ? this.first : year == 2 ? this.second : year == 3 ? this.me : year == 4 ? this.me : year == 5 ? this.mt : year == 6 ? this.iia : year == 7 ? this.gcb : year == 8 ? this.gi : this.first;
+      this.currentMatterYearTooltip = year == 1 ? this.firstTooltip : year == 2 ? this.secondTooltip : year == 3 ? this.meTooltip : year == 4 ? this.meTooltip : year == 5 ? this.mtTooltip : year == 6 ? this.iiaTooltip : year == 7 ? this.gcbTooltip : year == 8 ? this.giTootlip : this.firstTooltip;
+
     }
   },
 
@@ -508,11 +526,39 @@ export default ({
 
           position: relative;
           overflow-y: scroll;
+          overflow-x: hidden;
           padding-right: 1rem;
           padding-left: .4rem;
           width: 100%;
           max-height: 59vh;
           z-index: 5;
+
+          .matter{
+            position: relative;
+          }
+
+          .matter::after{
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 50%;
+            bottom: -30px;
+            transform: translateX(-50%);
+            background-color: rgba(249, 243, 241, 0.5);
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            backdrop-filter: blur(10px);
+            color: rgb(75, 75, 75);
+            font-weight: bold;
+            padding: 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+          }
+
+          .matter:hover::after{
+            opacity: 1;
+          }
 
           .btn {
             display: block;
@@ -537,7 +583,7 @@ export default ({
             }
 
             &:not(.btn:last-of-type) {
-              margin-bottom: 1.2rem;
+              margin-bottom: 1.7rem;
             }
           }
 

@@ -48,16 +48,38 @@ export default ({
       return `https://delmoo.fr:5000/cours/open?file=${path}`;
     },
     downloadFile(coursPath) {
-      axios.post('https://delmoo.fr:5000/cours/download', {
-        filePath: coursPath
-      }, {
+      axios({
+        method: 'get',
+        url: 'https://delmoo.fr:5000/cours/download',
+        params: {
+          path: coursPath,
+        },
+        responseType: 'blob',
         validateStatus: function (status) {
-          return status === 201 || status === 500 || status === 403;
+          return status === 200 || status === 500 || status === 403;
         }
       })
           .then((response) => {
-            window.open(response.request.responseURL, '_blank');
+            const blob = new Blob([response.data], { type: response.headers['content-type'] });
+
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+
+            if (response.headers['content-disposition']) {
+              link.download = response.headers['content-disposition'].split('=')[1];
+            } else {
+              link.download = 'downloaded_file';
+            }
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
           })
+          .catch(error => {
+            console.error('Erreur lors du téléchargement du fichier :', error);
+          });
     },
     showErrorModal(message) {
       this.errorMessage = message;

@@ -217,7 +217,7 @@ export default {
           },
           {
             validateStatus: function (status) {
-              return status === 409 || status === 500 || status === 200;
+              return status === 409 || status === 500 || status === 201;
             }
           }).then((res) => {
             this.loading = false;
