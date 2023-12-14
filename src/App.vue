@@ -10,9 +10,6 @@
 </template>
 
 <script>
-import Vue from "@vue/cli-plugin-eslint/eslintOptions";
-
-Vue.config.productionTip = false;
 import CookieBanner from '@/components/modal/CookieModal.vue';
 export default {
   name: 'App',
